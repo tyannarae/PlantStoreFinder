@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Store, Stores } from "../../database/stores";
+import { Store, Stores } from "../../database/stores"; //creating the database on a different branch. 
 
 export type CityPageContextType = {
   selectedStore: Store;
@@ -10,7 +10,7 @@ export type CityPageContextType = {
 };
 
 export const CityPageContext = createContext<CityPageContextType>({
-  selectedStore: Stores[0],
+  selectedStore: Stores[0], //once i create the data replace Store[0] with actual first store listed in data object
   setSelectedStore: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),
   isModalOpen: false,
