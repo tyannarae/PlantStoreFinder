@@ -1,3 +1,4 @@
+//this interface is for a single store in the Stores database
 export interface Store {
     id: number,
     city: string,
@@ -13,6 +14,8 @@ export interface Store {
     blurb: string,
     photos: Array<string>,
 }
+
+//each city will contain corrdinates for our map component plus the list of stores
 export interface City {
     city: string, 
     state: string,
@@ -24,8 +27,7 @@ export interface City {
         Array<Store>,
     
 }
-// export interface Storess extends Store, City {}
-
+//below is our database
 export const Stores: Array<City> = [
   {
     city: "Austin",
