@@ -7,7 +7,7 @@ function Map() {
   return (
     <MapContainer
       id="mapid"
-      center={[51.505, -0.09]}
+      center={[30.2672, -97.7431]}
       zoom={13}
       scrollWheelZoom={false}
     >
@@ -15,10 +15,11 @@ function Map() {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+      <Marker position={[30.26127, -97.70422]}>
+        <Popup>East Austin Succulents</Popup>
+      </Marker>
+      <Marker position={[30.23477, -97.75765]}>
+        <Popup>The Great Outdoor Store</Popup>
       </Marker>
     </MapContainer>
   );
