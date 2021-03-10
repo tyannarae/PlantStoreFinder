@@ -1,26 +1,34 @@
 import { createContext, useContext } from "react";
-import { Store, Stores } from "../../database/stores"; //creating the database on a different branch. 
+import { Store, Stores } from "../../database/stores"; //creating the database on a different branch.
+
 const stores = Stores[0].stores;
-let storeId: any = {}
+
+interface StoreIndexMap {   //interface for the map of store indices and their id.
+  [key: number]: string;
+}
+let storeId: StoreIndexMap = {}; 
 export type CityPageContextType = {
   selectedStore: Store;
   setSelectedStore: (chosenStore: Store) => void;
   isModalOpen: boolean;
   setModalOpen: (isOpen: boolean) => void;
   stores: Array<Store>;
-  storeIdToIndexMap: Array<string>
+  storeIdToIndexMap: Array<string>;
 };
 
 export const CityPageContext = createContext<CityPageContextType>({
-  selectedStore: stores[0], 
+  selectedStore: stores[0],
   setSelectedStore: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),
-  isModalOpen: false,
+  isModalOpen: false,     
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
-  storeIdToIndexMap: stores.map((store: Store, index: number) => ( //list of store ids and index paired with them.
-    storeId[index]= store.id
-  )),
+  storeIdToIndexMap: stores.map( //object of store ids and indices paired with them.
+    (
+      store: Store,
+      index: number 
+    ) => (storeId[index] = store.id)
+  ),
 });
 
 export const useSearchContext = () => useContext(CityPageContext);
