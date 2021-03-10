@@ -4,7 +4,7 @@ import { Store, Stores } from "../../database/stores"; //creating the database o
 const stores = Stores[0].stores;
 
 interface StoreIndexMap {   //interface for the map of store indices and their id.
-  [key: number]: string;
+  [key: string]: number;  //key will be store ID and value will be index
 }
 let storeId: StoreIndexMap = {}; 
 export type CityPageContextType = {
@@ -27,7 +27,7 @@ export const CityPageContext = createContext<CityPageContextType>({
     (
       store: Store,
       index: number 
-    ) => (storeId[index] = store.id)
+    ) => (storeId[store.id] = index )
   ),
 });
 
