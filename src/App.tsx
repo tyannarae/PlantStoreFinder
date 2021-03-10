@@ -1,9 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { thisfunction } from "../src/database/stores";
 
-thisfunction();
 function App() {
   return (
     <div className="App">
