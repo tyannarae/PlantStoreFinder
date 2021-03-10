@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./map.scss";
 
 function Map() {
-  // const mymap = MapContainer.map('mapid').setView([51.505, -0.09], 13);
+  /* once we have merged context and the database I will update this information rather than hard coding it. */
   return (
     <MapContainer
       id="mapid"
