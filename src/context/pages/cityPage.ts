@@ -31,4 +31,4 @@ export const CityPageContext = createContext<CityPageContextType>({
   ),
 });
 
-export const useSearchContext = () => useContext(CityPageContext);
+export const useCityPageContext = () => useContext(CityPageContext);
