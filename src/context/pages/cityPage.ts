@@ -1,19 +1,28 @@
 import { createContext, useContext } from "react";
-import { Store, Stores } from "../../database/stores"; //creating the database on a different branch.
+import { Store, Stores } from "../../stores"; //creating the database on a different branch.
 
 const stores = Stores[0].stores;
 
 interface StoreIndexMap {   //interface for the map of store indices and their id.
-  [key: string]: number;  //key will be store ID and value will be index
+   [key: string]: number //key will be store ID and value will be index
 }
 let storeId: StoreIndexMap = {}; 
+const mapStoreIdsToIndex =() =>{
+  stores.forEach( 
+    (
+      store: Store,
+      index: number 
+    ) => storeId[store.id] = index
+  )
+  return storeId
+}
 export type CityPageContextType = {
   selectedStore: Store;
   setSelectedStore: (chosenStore: Store) => void;
   isModalOpen: boolean;
   setModalOpen: (isOpen: boolean) => void;
   stores: Array<Store>;
-  storeIdToIndexMap: Array<string>;
+  storeIdToIndexMap: StoreIndexMap;
 };
 
 export const CityPageContext = createContext<CityPageContextType>({
@@ -23,12 +32,7 @@ export const CityPageContext = createContext<CityPageContextType>({
   isModalOpen: false,     
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
-  storeIdToIndexMap: stores.map( //object of store ids and indices paired with them.
-    (
-      store: Store,
-      index: number 
-    ) => (storeId[store.id] = index )
-  ),
+  storeIdToIndexMap: mapStoreIdsToIndex()
 });
 
 export const useCityPageContext = () => useContext(CityPageContext);
