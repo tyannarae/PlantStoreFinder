@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
 import { Store, Stores } from "../../stores"; //creating the database on a different branch.
 
-const stores = Stores[0].stores;
+export const stores = Stores[0].stores;
 
-interface StoreIndexMap {   //interface for the map of store indices and their id.
+export interface StoreIndexMap {   //interface for the map of store indices and their id.
    [key: string]: number //key will be store ID and value will be index
 }
 let storeId: StoreIndexMap = {}; 
-const mapStoreIdsToIndex =() =>{
+export const mapStoreIdsToIndex =() =>{
   stores.forEach( 
     (
       store: Store,
