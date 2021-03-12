@@ -6,7 +6,7 @@ export const stores = Stores[0].stores;
 export interface StoreIndexMap {   //interface for the map of store indices and their id.
    [key: string]: number //key will be store ID and value will be index
 }
-let storeId: StoreIndexMap = {}; 
+export let storeId: StoreIndexMap = {}; 
 export const mapStoreIdsToIndex =() =>{
   stores.forEach( 
     (
