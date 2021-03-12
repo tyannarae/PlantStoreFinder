@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 import {mapStoreIdsToIndex } from "./cityPage";
 
     describe("mapStoreIdsToIndex function call", () => {
