@@ -7,7 +7,7 @@ interface StoreIndexMap {   //interface for the map of store indices and their i
    [key: string]: number //key will be store ID and value will be index
 }
 let storeId: StoreIndexMap = {}; 
-const mapStoreIdsToIndex =() =>{
+export const mapStoreIdsToIndex =(stores: Store) =>{
   stores.forEach( 
     (
       store: Store,
@@ -32,7 +32,7 @@ export const CityPageContext = createContext<CityPageContextType>({
   isModalOpen: false,     
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
-  storeIdToIndexMap: mapStoreIdsToIndex()
+  storeIdToIndexMap: mapStoreIdsToIndex(stores)
 });
 
 export const useCityPageContext = () => useContext(CityPageContext);
