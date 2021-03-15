@@ -1,13 +1,15 @@
 import React from "react";
 import { Stores } from "./database/stores";
-import { Cardtext } from "./components/cardText";
+import { CardText } from "./components/cardText";
 import "./App.scss";
+
+//CardText will be to the page level once that is merged into master
 
 const App = () => {
   return (
     <div className="App ">
       {Stores[0].stores.map((store) => (
-        <Cardtext store={store} />
+        <CardText store={store} />
       ))}
     </div>
   );
