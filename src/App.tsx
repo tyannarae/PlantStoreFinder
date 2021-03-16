@@ -1,6 +1,6 @@
 import React from "react";
 import { Stores } from "./database/stores";
-import { CardText } from "./components/cardText";
+import { StoreInfo } from "./components/storeInfo";
 import Map from "./components/map";
 import "./App.scss";
 
@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
         <Map />
         {Stores[0].stores.map((store) => (
-          <CardText store={store} />
+          <StoreInfo store={store} />
         ))}
       </header>
     </div>
