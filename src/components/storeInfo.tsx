@@ -28,10 +28,10 @@ export const StoreInfo: FunctionComponent<StoreInfoProps> = (
         <div className="tile is-vertical ">
           <BrowserRouter>
             <div className="tile header">
-              <div className="address tile is-parent is-vertical is-8">
+              <div className="businessNameContainer tile is-parent is-vertical is-10">
                 <div className="businessName">{bussinessName}</div>
               </div>
-              <div className="tile is-parent is-vertical endItem">
+              <div className="tile is-parent is-vertical endItem ">
                 <div className="tile">
                   {fbHandle ? (
                     <Link
@@ -70,11 +70,12 @@ export const StoreInfo: FunctionComponent<StoreInfoProps> = (
                 </div>
               </div>
             </div>
-            <div className="tile">
-              <div className="address tile is-parent is-vertical">
+            <div className="tile infoDetails">
+              <div className=" address tile is-parent is-vertical">
                 <div>{address}</div>
               </div>
               <div className="tile is-parent is-vertical endItem">
+                <div>{phone}</div>
                 {website ? (
                   <Link
                     to="route"
@@ -84,13 +85,12 @@ export const StoreInfo: FunctionComponent<StoreInfoProps> = (
                       window.open(website);
                     }}
                   >
-                    Website
+                    Visit Website
                   </Link>
                 ) : null}
-                <div>{phone}</div>
               </div>
             </div>
-            <div className="is-parent tile">{blurb}</div>
+            <div className="blurb is-parent tile">{blurb}</div>
           </BrowserRouter>
         </div>
       </div>

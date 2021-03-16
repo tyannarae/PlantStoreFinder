@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Map />
-        {Stores[0].stores.map((store) => (
-          <StoreInfo store={store} />
+        {Stores[0].stores.map((store, index) => (
+          <StoreInfo store={store} key={index} />
         ))}
       </header>
     </div>
