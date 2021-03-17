@@ -84,19 +84,14 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
             <div className=" address tile is-parent is-vertical">
               <div>{address}</div>
             </div>
-            <div
-              className="tile is-parent is-vertical endItem"
-              data-testid="websiteLink"
-            >
+            <div className="tile is-parent is-vertical endItem">
               {phone ? <div>{phone}</div> : null}
               {website ? (
                 <a
+                  data-testid="websiteLink"
                   href={website}
                   rel="noopener noreferrer"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    window.open(website);
-                  }}
+                  target="_blank"
                 >
                   Visit Website
                 </a>

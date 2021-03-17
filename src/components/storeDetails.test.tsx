@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { StoreDetails } from "./storeDetails";
+import { Console } from "console";
 
 describe("StoreInfo", () => {
   const store = {
@@ -36,23 +37,16 @@ describe("StoreInfo", () => {
       )
     ).toBeDefined();
   });
-  it("Renders with website link", () => {
+  it("Renders with fabebook link", () => {
     render(<StoreDetails store={store} />);
-    const websiteLink = screen.getByTestId("websiteLink");
-    expect(websiteLink).toHaveAttribute(
-      "href",
-      "https://eastaustinsucculents.com/"
+    expect(screen.getByTestId("fbHandle").href).toEqual(
+      "https://www.facebook.com/east.austinsucculents"
     );
-    // const img = screen.getByTestId("userImg");
-    // expect(img).toHaveAttribute(
-    //   "src",
-    //   "https://bulma.io/images/placeholders/128x128.png"
-    // );
   });
-  // it("Renders fbHandle link and fires onclick event", () => {
+  // it("Renders website link", () => {
 
   // });
-  // it("Renders igHandle link and fires onclick event", () => {
+  // it("Renders igHandle link", () => {
 
   // });
 });
