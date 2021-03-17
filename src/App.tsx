@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Store } from "./database/stores";
 import { StoreDetails } from "./components/storeDetails";
 import { CityPageContext } from "./context/pages/cityPage";
 import Map from "./components/map";
 import "./App.scss";
 
-//CardText will be to the page level once that is merged into master
+//StoreDetails will be moved to the page level once the page branch is merged into master
 
 function App() {
-  const { storeIdToIndexMap, stores } = React.useContext(CityPageContext);
+  const { storeIdToIndexMap, stores } = useContext(CityPageContext);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+  console.log(selectedStore);
   return (
     <CityPageContext.Provider
       value={{
@@ -25,8 +26,8 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Map />
-          {stores.map((store, index) => (
-            <StoreDetails store={store} key={index} />
+          {stores.map((store) => (
+            <StoreDetails store={store} key={store.id} />
           ))}
         </header>
       </div>

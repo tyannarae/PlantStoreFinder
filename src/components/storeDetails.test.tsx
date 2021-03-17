@@ -36,25 +36,23 @@ describe("StoreInfo", () => {
       )
     ).toBeDefined();
   });
-  it("Renders website link and fires onclick event", () => {
-    global.open = jest.fn();
+  it("Renders with website link", () => {
     render(<StoreDetails store={store} />);
-    const websiteLink = screen.getByText("Website") as HTMLElement;
-    fireEvent.click(websiteLink);
-    expect(global.open).toBeCalled();
+    const websiteLink = screen.getByTestId("websiteLink");
+    expect(websiteLink).toHaveAttribute(
+      "href",
+      "https://eastaustinsucculents.com/"
+    );
+    // const img = screen.getByTestId("userImg");
+    // expect(img).toHaveAttribute(
+    //   "src",
+    //   "https://bulma.io/images/placeholders/128x128.png"
+    // );
   });
-  it("Renders fbHandle link and fires onclick event", () => {
-    global.open = jest.fn();
-    render(<StoreDetails store={store} />);
-    const fbHandleLink = screen.getByTestId("fbHandle") as HTMLElement;
-    fireEvent.click(fbHandleLink);
-    expect(global.open).toBeCalled();
-  });
-  it("Renders igHandle link and fires onclick event", () => {
-    global.open = jest.fn();
-    render(<StoreDetails store={store} />);
-    const igHandleLink = screen.getByTestId("igHandle") as HTMLElement;
-    fireEvent.click(igHandleLink);
-    expect(global.open).toBeCalled();
-  });
+  // it("Renders fbHandle link and fires onclick event", () => {
+
+  // });
+  // it("Renders igHandle link and fires onclick event", () => {
+
+  // });
 });

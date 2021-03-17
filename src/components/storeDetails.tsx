@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
+import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
 import igLogo from "../media/igLogo.png";
@@ -7,11 +8,11 @@ import "../components/storeDetails.scss";
 export interface StoreDetailsProps {
   store: Store;
 }
-
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
 ) => {
   const {
+    id,
     bussinessName,
     website,
     address,
@@ -20,9 +21,24 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-  //opens a new tab for the stores website
+  const { setSelectedStore, storeIdToIndexMap, stores } = useContext(
+    CityPageContext
+  );
+  //takes the id of the store that was clicked and updates the selectedStore
+  const setNewStore = (id: String) => {
+    for (const [key, value] of Object.entries(storeIdToIndexMap)) {
+      if (key === id) {
+        setSelectedStore(stores[value]);
+      }
+    }
+  };
   return (
-    <div className="card-content ">
+    <div
+      className="card-content "
+      onClick={(event) => {
+        setNewStore(id);
+      }}
+    >
       <div className="tile is-ancestor">
         <div className="tile is-vertical ">
           <div className="tile header">
@@ -68,8 +84,11 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
             <div className=" address tile is-parent is-vertical">
               <div>{address}</div>
             </div>
-            <div className="tile is-parent is-vertical endItem">
-              <div>{phone}</div>
+            <div
+              className="tile is-parent is-vertical endItem"
+              data-testid="websiteLink"
+            >
+              {phone ? <div>{phone}</div> : null}
               {website ? (
                 <a
                   href={website}

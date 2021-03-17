@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import { Store, Stores } from "../../database/stores"; //creating the database on a different branch.
 
 const stores = Stores[0].stores;
@@ -26,13 +26,13 @@ export type CityPageContextType = {
 };
 
 export const CityPageContext = createContext<CityPageContextType>({
-  selectedStore: stores[0],
-  setSelectedStore: (chosenStore) =>
-    console.warn("no setSelectedStore context provider"),
   isModalOpen: false,     
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
-  storeIdToIndexMap: mapStoreIdsToIndex(stores)
+  storeIdToIndexMap: mapStoreIdsToIndex(stores),
+  selectedStore: stores[0],
+  setSelectedStore: (chosenStore) =>
+    console.warn("no setSelectedStore context provider"),
 });
 
 export const useCityPageContext = createContext(CityPageContext);
