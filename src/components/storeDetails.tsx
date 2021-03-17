@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { Link, BrowserRouter } from "react-router-dom";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
 import igLogo from "../media/igLogo.png";
@@ -26,72 +25,66 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     <div className="card-content ">
       <div className="tile is-ancestor">
         <div className="tile is-vertical ">
-          <BrowserRouter>
-            <div className="tile header">
-              <div className="businessNameContainer tile is-parent is-vertical is-10">
-                <div className="businessName">{bussinessName}</div>
-              </div>
-              <div className="tile is-parent is-vertical endItem ">
-                <div className="tile">
-                  {fbHandle ? (
-                    <Link
-                      data-testid="fbHandle"
-                      to="route"
-                      target="_blank"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        window.open(fbHandle);
-                      }}
-                    >
-                      <img
-                        className="linkImg tile is-vertical"
-                        alt="link"
-                        src={fbLogo}
-                      />
-                    </Link>
-                  ) : null}
-                  {igHandle ? (
-                    <Link
-                      data-testid="igHandle"
-                      to="route"
-                      target="_blank"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        window.open(igHandle);
-                      }}
-                    >
-                      <img
-                        className="linkImg tile is-vertical"
-                        alt="link"
-                        src={igLogo}
-                      />
-                    </Link>
-                  ) : null}
-                </div>
-              </div>
+          <div className="tile header">
+            <div className="businessNameContainer tile is-parent is-vertical is-10">
+              <div className="businessName">{bussinessName}</div>
             </div>
-            <div className="tile infoDetails">
-              <div className=" address tile is-parent is-vertical">
-                <div>{address}</div>
-              </div>
-              <div className="tile is-parent is-vertical endItem">
-                <div>{phone}</div>
-                {website ? (
-                  <Link
-                    to="route"
+            <div className="tile is-parent is-vertical endItem ">
+              <div className="tile">
+                {fbHandle ? (
+                  <a
+                    className="linkImg"
+                    href={fbHandle}
+                    rel="noopener noreferrer"
+                    data-testid="fbHandle"
                     target="_blank"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      window.open(website);
-                    }}
                   >
-                    Visit Website
-                  </Link>
+                    <img
+                      className="aImg tile is-vertical"
+                      alt="a"
+                      src={fbLogo}
+                    />
+                  </a>
+                ) : null}
+                {igHandle ? (
+                  <a
+                    className="linkImg"
+                    href={igHandle}
+                    rel="noopener noreferrer"
+                    data-testid="igHandle"
+                    target="_blank"
+                  >
+                    <img
+                      className="aImg tile is-vertical"
+                      alt="a"
+                      src={igLogo}
+                    />
+                  </a>
                 ) : null}
               </div>
             </div>
-            <div className="blurb is-parent tile">{blurb}</div>
-          </BrowserRouter>
+          </div>
+          <div className="tile infoDetails">
+            <div className=" address tile is-parent is-vertical">
+              <div>{address}</div>
+            </div>
+            <div className="tile is-parent is-vertical endItem">
+              <div>{phone}</div>
+              {website ? (
+                <a
+                  href={website}
+                  rel="noopener noreferrer"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    window.open(website);
+                  }}
+                >
+                  Visit Website
+                </a>
+              ) : null}
+            </div>
+          </div>
+          <div className="blurb is-parent tile">{blurb}</div>
         </div>
       </div>
     </div>
