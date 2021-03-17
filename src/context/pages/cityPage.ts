@@ -35,4 +35,4 @@ export const CityPageContext = createContext<CityPageContextType>({
   storeIdToIndexMap: mapStoreIdsToIndex(stores)
 });
 
-export const useCityPageContext = () => useContext(CityPageContext);
+export const useCityPageContext = createContext(CityPageContext);

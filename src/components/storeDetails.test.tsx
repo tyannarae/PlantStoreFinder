@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { StoreInfo } from "./storeInfo";
+import { StoreDetails } from "./storeDetails";
 
 describe("StoreInfo", () => {
   const store = {
@@ -24,7 +24,7 @@ describe("StoreInfo", () => {
     ],
   };
   it("Renders with store props: bussinessName, phone, address, blurb", () => {
-    render(<StoreInfo store={store} />);
+    render(<StoreDetails store={store} />);
     expect(screen.getByText("East Austin Succulents")).toBeDefined();
     expect(screen.getByText("(512)701-3448")).toBeDefined();
     expect(
@@ -38,21 +38,21 @@ describe("StoreInfo", () => {
   });
   it("Renders website link and fires onclick event", () => {
     global.open = jest.fn();
-    render(<StoreInfo store={store} />);
+    render(<StoreDetails store={store} />);
     const websiteLink = screen.getByText("Website") as HTMLElement;
     fireEvent.click(websiteLink);
     expect(global.open).toBeCalled();
   });
   it("Renders fbHandle link and fires onclick event", () => {
     global.open = jest.fn();
-    render(<StoreInfo store={store} />);
+    render(<StoreDetails store={store} />);
     const fbHandleLink = screen.getByTestId("fbHandle") as HTMLElement;
     fireEvent.click(fbHandleLink);
     expect(global.open).toBeCalled();
   });
   it("Renders igHandle link and fires onclick event", () => {
     global.open = jest.fn();
-    render(<StoreInfo store={store} />);
+    render(<StoreDetails store={store} />);
     const igHandleLink = screen.getByTestId("igHandle") as HTMLElement;
     fireEvent.click(igHandleLink);
     expect(global.open).toBeCalled();

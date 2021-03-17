@@ -3,14 +3,14 @@ import { Link, BrowserRouter } from "react-router-dom";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
 import igLogo from "../media/igLogo.png";
-import "../components/storeInfo.scss";
+import "../components/storeDetails.scss";
 
-export interface StoreInfoProps {
+export interface StoreDetailsProps {
   store: Store;
 }
 
-export const StoreInfo: FunctionComponent<StoreInfoProps> = (
-  StoreInfoProps
+export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
+  StoreDetailsProps
 ) => {
   const {
     bussinessName,
@@ -20,7 +20,7 @@ export const StoreInfo: FunctionComponent<StoreInfoProps> = (
     igHandle,
     fbHandle,
     blurb,
-  } = StoreInfoProps.store;
+  } = StoreDetailsProps.store;
   //opens a new tab for the stores website
   return (
     <div className="card-content ">
