@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { StoreDetails } from "./storeDetails";
-import { Console } from "console";
 
 describe("StoreInfo", () => {
   const store = {
@@ -43,10 +42,16 @@ describe("StoreInfo", () => {
       "https://www.facebook.com/east.austinsucculents"
     );
   });
-  // it("Renders website link", () => {
-
-  // });
-  // it("Renders igHandle link", () => {
-
-  // });
+  it("Renders website link", () => {
+    render(<StoreDetails store={store} />);
+    expect(screen.getByTestId("websiteLink").href).toEqual(
+      "https://eastaustinsucculents.com/"
+    );
+  });
+  it("Renders igHandle link", () => {
+    render(<StoreDetails store={store} />);
+    expect(screen.getByTestId("igHandle").href).toEqual(
+      "https://www.instagram.com/eastaustinsucculents/"
+    );
+  });
 });
