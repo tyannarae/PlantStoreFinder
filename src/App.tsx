@@ -38,7 +38,7 @@ function App() {
         <Map />
         {stores.map((store) => (
           <React.Suspense fallback={<p>loading</p>}>
-            {/* these two components will eventaully be stores inside of storeCard. */}
+            {/* these two components will eventaully be stored inside of storeCard. */}
             <StoreMedia photos={store.photos} />
             <StoreDetails store={store} key={store.id} />
           </React.Suspense>
