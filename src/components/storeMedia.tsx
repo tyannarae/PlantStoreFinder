@@ -1,15 +1,15 @@
 import React, { FunctionComponent, useState } from "react";
-import { Store } from "../database/stores";
 import "./storeMedia.scss";
 
 export interface StoreMediaDetailsProps {
-  store: Store;
+  photos: Array<string>;
 }
 export const StoreMedia: FunctionComponent<StoreMediaDetailsProps> = (
   StoreMediaDetailsProps
 ) => {
-  const { photos } = StoreMediaDetailsProps.store;
+  const { photos } = StoreMediaDetailsProps;
   const [photoIndex, setPhoto] = useState(0);
+
   //takes the id of the store that was clicked and updates the selectedStore
   //this will be moved to the Store component once that has been created.
   //****move this function to pagination component eventually */
@@ -27,7 +27,7 @@ export const StoreMedia: FunctionComponent<StoreMediaDetailsProps> = (
       <img
         className="image plantStorePhoto"
         src={photos[photoIndex]}
-        alt="firstphoto"
+        alt="../media/placeholder.png"
       ></img>
     </div>
   );
