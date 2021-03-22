@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import { Store } from "../database/stores";
+import "./storeMedia.scss";
 
 export interface StoreMediaDetailsProps {
   store: Store;
@@ -23,7 +24,11 @@ export const StoreMedia: FunctionComponent<StoreMediaDetailsProps> = (
         setNewPhoto(1);
       }}
     >
-      <img className="image" src={photos[photoIndex]} alt="firstphoto"></img>
+      <img
+        className="image plantStorePhoto"
+        src={photos[photoIndex]}
+        alt="firstphoto"
+      ></img>
     </div>
   );
 };

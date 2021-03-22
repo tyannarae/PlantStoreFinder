@@ -1,11 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, lazy } from "react";
 import { Store } from "./database/stores";
 import { StoreDetails } from "./components/storeDetails";
 import { CityPageContext } from "./context/pages/cityPage";
 import Map from "./components/map";
-import { StoreMedia } from "./components/storeMedia";
 import "./App.scss";
-
+const StoreMedia = lazy(() =>
+  import("./components/storeMedia").then(({ StoreMedia }) => ({
+    default: StoreMedia,
+  }))
+);
 //StoreDetails will be moved to the page level once the page branch is merged into master
 
 function App() {
@@ -28,10 +31,10 @@ function App() {
         <header className="App-header">
           <Map />
           {stores.map((store) => (
-            <div>
+            <React.Suspense fallback={<p>loading</p>}>
               <StoreMedia store={store} />
               <StoreDetails store={store} key={store.id} />
-            </div>
+            </React.Suspense>
           ))}
         </header>
       </div>
