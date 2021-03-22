@@ -15,7 +15,6 @@ function App() {
   const { storeIdToIndexMap, stores } = useContext(CityPageContext);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
-  console.log(selectedStore);
   return (
     <CityPageContext.Provider
       value={{
@@ -28,15 +27,14 @@ function App() {
       }}
     >
       <div className="App">
-        <header className="App-header">
-          <Map />
-          {stores.map((store) => (
-            <React.Suspense fallback={<p>loading</p>}>
-              <StoreMedia store={store} />
-              <StoreDetails store={store} key={store.id} />
-            </React.Suspense>
-          ))}
-        </header>
+        <header className="App-header"></header>
+        <Map />
+        {stores.map((store) => (
+          <React.Suspense fallback={<p>loading</p>}>
+            <StoreMedia store={store} />
+            <StoreDetails store={store} key={store.id} />
+          </React.Suspense>
+        ))}
       </div>
     </CityPageContext.Provider>
   );
