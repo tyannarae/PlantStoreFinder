@@ -1,22 +1,11 @@
-import React, { useState, useContext, lazy } from "react";
+import React, { useState, useContext } from "react";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { Store } from "./database/stores";
 import { CityPageContext } from "./context/pages/cityPage";
+import { StoreMedia } from "./components/storeMedia";
+import { StoreDetails } from "./components/storeDetails";
 import Map from "./components/map";
 import "./App.scss";
-//we will want to lazy loading for the entire storeCard once that branch is created.
-//Until then we can lazy load storeMedia + store details
-const StoreMedia = lazy(() =>
-  import("./components/storeMedia").then(({ StoreMedia }) => ({
-    default: StoreMedia,
-  }))
-);
-const StoreDetails = lazy(() =>
-  import("./components/storeDetails").then(({ StoreDetails }) => ({
-    default: StoreDetails,
-  }))
-);
-
-//StoreDetails will be moved to the page level once the page branch is merged into master
 
 function App() {
   const { storeIdToIndexMap, stores } = useContext(CityPageContext);
@@ -37,11 +26,10 @@ function App() {
         <header className="App-header"></header>
         <Map />
         {stores.map((store) => (
-          <React.Suspense fallback={<p>loading</p>}>
-            {/* these two components will eventaully be stored inside of storeCard. */}
+          <LazyLoadComponent>
             <StoreMedia photos={store.photos} />
             <StoreDetails store={store} key={store.id} />
-          </React.Suspense>
+          </LazyLoadComponent>
         ))}
       </div>
     </CityPageContext.Provider>

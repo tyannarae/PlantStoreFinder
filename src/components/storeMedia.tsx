@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./storeMedia.scss";
 
 export interface StoreMediaDetailsProps {
@@ -24,11 +25,11 @@ export const StoreMedia: FunctionComponent<StoreMediaDetailsProps> = (
         setNewPhoto(1);
       }}
     >
-      <img
+      <LazyLoadImage
         className="image plantStorePhoto"
         src={photos[photoIndex]}
         alt="../media/placeholder.png"
-      ></img>
+      />
     </div>
   );
 };
