@@ -1,0 +1,49 @@
+@import "../globalStyles/colors.scss";
+.header {
+  border-bottom: solid $lightGrey 0.1rem;
+}
+.linkImg {
+  width: 2em;
+  padding: 0.2em;
+}
+.businessNameContainer {
+  align-items: baseline;
+  padding: none;
+}
+.address {
+  align-items: baseline;
+  font-weight: 100;
+}
+.businessName {
+  font-size: 1.6rem;
+}
+.blurb {
+  text-align: left;
+}
+.endItem {
+  font-weight: 100;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 769px) {
+  .tile:not(.is-child) {
+    display: flex;
+  }
+  .linkImg {
+    width: 1.3rem;
+  }
+  .businessName {
+    font-size: 1.3rem;
+    text-align: left;
+  }
+  .blurb {
+    font-size: 0.95rem;
+  }
+  .address {
+    // font-size: 0.8rem;
+    text-align: left;
+  }
+  .infoDetails {
+    font-size: 0.8rem;
+  }
+}

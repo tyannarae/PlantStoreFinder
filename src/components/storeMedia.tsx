@@ -23,11 +23,7 @@ export const StoreMedia: FunctionComponent<StoreMediaDetailsProps> = (
         setNewPhoto(1);
       }}
     >
-      <img
-        className="image is-16by9"
-        src={photos[photoIndex]}
-        alt="firstphoto"
-      ></img>
+      <img className="image" src={photos[photoIndex]} alt="firstphoto"></img>
     </div>
   );
 };
