@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Store, Stores } from "../../database/stores"; //creating the database on a different branch.
+import { Store, Stores, City, MapCoordinates } from "../../database/stores"; //creating the database on a different branch.
 
 const stores = Stores[0].stores;
 
@@ -17,6 +17,7 @@ export const mapStoreIdsToIndex =(stores: Array<Store>) =>{
   return storeId
 }
 export type CityPageContextType = {
+  selectedCity: MapCoordinates;
   selectedStore: Store;
   setSelectedStore: (chosenStore: Store) => void;
   isModalOpen: boolean;
@@ -31,6 +32,7 @@ export const CityPageContext = createContext<CityPageContextType>({
   stores: stores,
   storeIdToIndexMap: mapStoreIdsToIndex(stores),
   selectedStore: stores[0],
+  selectedCity: Stores[0].mapCoordinates,
   setSelectedStore: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),
 });

@@ -14,18 +14,17 @@ export interface Store {
     blurb: string,
     photos: Array<string>,
 }
-
+export interface MapCoordinates {
+    lat: number,
+    lng: number,
+}
 //each city will contain corrdinates for our map component plus the list of stores
 export interface City {
     city: string, 
     state: string,
-    mapCoordinates: {
-        lat: number,
-        lng: number,
-    }
+    mapCoordinates: MapCoordinates,
     stores: 
         Array<Store>,
-    
 }
 //below is our database
 export const Stores: Array<City> = [
