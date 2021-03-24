@@ -7,12 +7,8 @@ export interface TopNavProps {
   seletedCity: MapCoordinates;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
-  console.log("weather," + weather);
-  const { seletedCity } = TopNavProps;
-  const { lat, lng } = seletedCity;
-  lat.toString();
-  lng.toString();
-  return <div>Top Nav!</div>;
+  console.log(weather.currently);
+  return <div>Current Temp:</div>;
 };
 
 export default TopNav;
