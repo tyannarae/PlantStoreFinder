@@ -14,24 +14,43 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   //takes the id of the store that was clicked and updates the selectedStore
   //this will be moved to the Store component once that has been created.
   //****move this function to pagination component eventually */
-  const setNewPhoto = (index: number) => {
+  const setNewPhotoForward = (index: number) => {
     if (photos[photoIndex + 1]) {
       setPhoto(photoIndex + 1);
     }
   };
+  const setNewPhotoBackward = (index: number) => {
+    if (photos[photoIndex - 1]) {
+      setPhoto(photoIndex - 1);
+    }
+  };
   return (
-    <div
-      data-testid="imageForward"
-      onClick={() => {
-        setNewPhoto(1);
-      }}
-    >
+    <div>
       <LazyLoadImage
         data-testid="lazyLoadImage"
         className="image plantStorePhoto"
         src={photos[photoIndex]}
         alt="../media/placeholder.png"
       />
+
+      <button
+        className="button is-small"
+        data-testid="imageBackward"
+        onClick={() => {
+          setNewPhotoBackward(1);
+        }}
+      >
+        {"<"}
+      </button>
+      <button
+        data-testid="imageForward"
+        className="button is-small"
+        onClick={() => {
+          setNewPhotoForward(1);
+        }}
+      >
+        {">"}
+      </button>
     </div>
   );
 };

@@ -33,4 +33,9 @@ describe("StoreMedia", () => {
     fireEvent.click(screen.getByTestId("imageForward"));
     expect(screen.getByTestId("lazyLoadImage").src).toEqual(photos[1]);
   });
+  it("onClick event fires and updates to the previous photo", () => {
+    render(<StoreMedia photos={photos} />);
+    fireEvent.click(screen.getByTestId("imageBackward"));
+    expect(screen.getByTestId("lazyLoadImage").src).toEqual(photos[0]);
+  });
 });
