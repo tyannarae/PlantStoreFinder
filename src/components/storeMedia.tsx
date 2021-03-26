@@ -21,11 +21,13 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   };
   return (
     <div
+      data-testid="imageForward"
       onClick={() => {
         setNewPhoto(1);
       }}
     >
       <LazyLoadImage
+        data-testid="lazyLoadImage"
         className="image plantStorePhoto"
         src={photos[photoIndex]}
         alt="../media/placeholder.png"
