@@ -14,10 +14,31 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   var weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);
   console.log("kjdkjsdkjh", weatherObj);
   return (
-    <div className="navbar">
-      <div className="navbar-item">Current Temp:</div>
-      <div className="navbar-item">{weatherObj.apparentTemperature}</div>
-    </div>
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <span
+          role="button"
+          className="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </span>
+      </div>
+
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <div className="navbar-item">Home</div>
+          <div className="navbar-item">
+            Current Tempature {weatherObj.apparentTemperature}
+          </div>
+          <div className="navbar-item ">More</div>
+        </div>
+      </div>
+    </nav>
   );
 };
 

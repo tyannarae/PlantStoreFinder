@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { Store } from "./database/stores";
-import { StoreDetails } from "./components/storeDetails";
 import { CityPageContext } from "./context/pages/cityPage";
+import { StoreMedia } from "./components/storeMedia";
+import { StoreDetails } from "./components/storeDetails";
 import Map from "./components/map";
 import TopNav from "./components/topNav";
 import "./App.scss";
-
-//StoreDetails will be moved to the page level once the page branch is merged into master
 
 function App() {
   const { storeIdToIndexMap, stores, selectedCity } = useContext(
@@ -31,7 +31,10 @@ function App() {
         <TopNav seletedCity={selectedCity} />
         <Map />
         {stores.map((store) => (
-          <StoreDetails store={store} key={store.id} />
+          <LazyLoadComponent>
+            <StoreMedia photos={store.photos} />
+            <StoreDetails store={store} key={store.id} />
+          </LazyLoadComponent>
         ))}
       </div>
     </CityPageContext.Provider>
