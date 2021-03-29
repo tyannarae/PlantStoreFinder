@@ -22,7 +22,7 @@ function App() {
         storeIdToIndexMap,
       }}
     >
-      <div className="App ">
+      <div className="App">
         <Map />
         {stores.map((store) => (
           <LazyLoadComponent>

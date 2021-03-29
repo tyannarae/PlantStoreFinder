@@ -9,4 +9,18 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 40%;
+}
+
+.forwardArrow {
+  position: absolute;
+  top: 40%;
+  margin-right: 2em;
+  right: 0;
+}
+.backwardArrow {
+  position: absolute;
+  margin-left: 2em;
+  top: 40%;
+  left: 0;
 }

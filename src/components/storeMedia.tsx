@@ -26,7 +26,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   };
   return (
     <div className="card">
-      <div className="card-content tile is-parent ">
+      <div className="card-content">
         <div className="card-image">
           <LazyLoadImage
             data-testid="lazyLoadImage"
@@ -36,10 +36,11 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           />
         </div>
       </div>
-      <footer className="card-footer">
+
+      <div className="">
         <div
           data-testid="imageBackward"
-          className="button pagination-previous card-footer-item"
+          className="button backwardArrow"
           onClick={() => {
             setNewPhotoBackward(1);
           }}
@@ -48,14 +49,14 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
         </div>
         <div
           data-testid="imageForward"
-          className=" button pagination-next card-footer-item"
+          className=" button forwardArrow"
           onClick={() => {
             setNewPhotoForward(1);
           }}
         >
           {">"}
         </div>
-      </footer>
+      </div>
     </div>
   );
 };
