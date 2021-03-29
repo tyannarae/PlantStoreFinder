@@ -25,32 +25,37 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
     }
   };
   return (
-    <div>
-      <LazyLoadImage
-        data-testid="lazyLoadImage"
-        className="image plantStorePhoto"
-        src={photos[photoIndex]}
-        alt="../media/placeholder.png"
-      />
-
-      <button
-        className="button is-small"
-        data-testid="imageBackward"
-        onClick={() => {
-          setNewPhotoBackward(1);
-        }}
-      >
-        {"<"}
-      </button>
-      <button
-        data-testid="imageForward"
-        className="button is-small"
-        onClick={() => {
-          setNewPhotoForward(1);
-        }}
-      >
-        {">"}
-      </button>
+    <div className="card">
+      <div className="card-content tile is-parent ">
+        <div className="card-image">
+          <LazyLoadImage
+            data-testid="lazyLoadImage"
+            className="tile is-child plantStorePhoto"
+            src={photos[photoIndex]}
+            alt="../media/placeholder.png"
+          />
+        </div>
+      </div>
+      <footer className="card-footer">
+        <div
+          data-testid="imageBackward"
+          className="button pagination-previous card-footer-item"
+          onClick={() => {
+            setNewPhotoBackward(1);
+          }}
+        >
+          {"<"}
+        </div>
+        <div
+          data-testid="imageForward"
+          className=" button pagination-next card-footer-item"
+          onClick={() => {
+            setNewPhotoForward(1);
+          }}
+        >
+          {">"}
+        </div>
+      </footer>
     </div>
   );
 };
