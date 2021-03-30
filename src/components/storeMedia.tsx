@@ -25,8 +25,8 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
     }
   };
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-content">
+      <div className="">
         <div className="card-image">
           <LazyLoadImage
             data-testid="lazyLoadImage"

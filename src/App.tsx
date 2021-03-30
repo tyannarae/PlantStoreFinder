@@ -25,10 +25,12 @@ function App() {
       <div className="App">
         <Map />
         {stores.map((store) => (
-          <LazyLoadComponent>
-            <StoreMedia photos={store.photos} />
-            <StoreDetails store={store} key={store.id} />
-          </LazyLoadComponent>
+          <div className="storeContainer">
+            <LazyLoadComponent>
+              <StoreMedia photos={store.photos} />
+              <StoreDetails store={store} key={store.id} />
+            </LazyLoadComponent>
+          </div>
         ))}
       </div>
     </CityPageContext.Provider>
