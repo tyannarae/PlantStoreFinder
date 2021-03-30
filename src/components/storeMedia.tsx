@@ -27,10 +27,10 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   return (
     <div className="card-content">
       <div className="">
-        <div className="card-image">
+        <div className="">
           <LazyLoadImage
             data-testid="lazyLoadImage"
-            className="tile is-child plantStorePhoto"
+            className="plantStorePhoto"
             src={photos[photoIndex]}
             alt="../media/placeholder.png"
           />
@@ -40,7 +40,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
       <div className="">
         <div
           data-testid="imageBackward"
-          className="button backwardArrow"
+          className="button is-small is-rounded is-white backwardArrow"
           onClick={() => {
             setNewPhotoBackward(1);
           }}
@@ -49,7 +49,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
         </div>
         <div
           data-testid="imageForward"
-          className=" button forwardArrow"
+          className="button is-small  is-rounded is-white forwardArrow"
           onClick={() => {
             setNewPhotoForward(1);
           }}

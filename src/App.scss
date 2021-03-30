@@ -9,6 +9,11 @@
 }
 .storeContainer {
   position: relative;
+  width: 50%;
+  border-bottom: 0.01em solid $offWhite;
+  border-right: 0.01em solid $offWhite;
+  border-bottom-right-radius: 0.1em;
+  border-top-right-radius: 0.1em;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
