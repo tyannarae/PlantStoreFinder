@@ -52,11 +52,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
                     data-testid="fbHandle"
                     target="_blank"
                   >
-                    <img
-                      className="aImg tile is-vertical"
-                      alt="a"
-                      src={fbLogo}
-                    />
+                    <img className=" tile is-vertical" alt="a" src={fbLogo} />
                   </a>
                 ) : null}
                 {igHandle ? (
@@ -67,11 +63,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
                     data-testid="igHandle"
                     target="_blank"
                   >
-                    <img
-                      className="aImg tile is-vertical"
-                      alt="a"
-                      src={igLogo}
-                    />
+                    <img className=" tile is-vertical" alt="a" src={igLogo} />
                   </a>
                 ) : null}
               </div>

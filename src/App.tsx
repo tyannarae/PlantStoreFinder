@@ -23,15 +23,19 @@ function App() {
       }}
     >
       <div className="App">
-        <Map />
-        {stores.map((store) => (
-          <div className="storeContainer">
-            <LazyLoadComponent>
-              <StoreDetails store={store} key={store.id} />
-              <StoreMedia photos={store.photos} />
-            </LazyLoadComponent>
-          </div>
-        ))}
+        <div className="mapOutterContainer" style={{ width: "50vw" }}>
+          <Map />
+        </div>
+        <div className="storesContainer">
+          {stores.map((store) => (
+            <div className="storeContainer">
+              <LazyLoadComponent>
+                <StoreDetails store={store} key={store.id} />
+                <StoreMedia photos={store.photos} />
+              </LazyLoadComponent>
+            </div>
+          ))}
+        </div>
       </div>
     </CityPageContext.Provider>
   );
