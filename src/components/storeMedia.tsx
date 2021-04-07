@@ -35,10 +35,10 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
       setPhotoIndex(photoIndex - 1);
       setImgUrl(photos[photoIndex - 1]);
     } else {
-      setPhotoIndex(photos.length);
+      setPhotoIndex(photos.length - 1);
       setImgUrl(photos[photoIndex]);
     }
-    console.log("back:", photoIndex, ":::", imgUrl);
+    console.log("back:  photoIndex:", photoIndex, "::  imgUrl:", imgUrl);
   };
   return (
     <div className="card-content">
