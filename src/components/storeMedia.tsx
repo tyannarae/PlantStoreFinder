@@ -10,35 +10,30 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
   const { photos } = StoreMediaProps;
+  const [totalPhotos] = useState(photos.length - 1);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [imgUrl, setImgUrl] = useState<string>(photos[0]);
+  const [imgUrl] = useState<string>(fallbackImg);
 
   function addDefaultSrc() {
-    setImgUrl(fallbackImg);
+    return fallbackImg;
   }
-
-  //takes the id of the store that was clicked and updates the selectedStore
-  //this will be moved to the Store component once that has been created.
-  //****move this function to pagination component eventually */
-  const setNewPhotoForward = (index: number) => {
-    if (photos[photoIndex + 1]) {
+  //moves forward 1 photo
+  const photoForward = () => {
+    if (photoIndex < totalPhotos) {
       setPhotoIndex(photoIndex + 1);
-      setImgUrl(photos[photoIndex + 1]);
     } else {
+      //otherwise rotate to beginning of photos
       setPhotoIndex(0);
-      setImgUrl(photos[photoIndex]);
     }
-    console.log("forward:", photoIndex, ":::", imgUrl);
   };
-  const setNewPhotoBackward = (index: number) => {
-    if (photos[photoIndex - 1]) {
+  //moves backwards 1 photo
+  const photoBackward = () => {
+    if (photoIndex > 0) {
       setPhotoIndex(photoIndex - 1);
-      setImgUrl(photos[photoIndex - 1]);
     } else {
-      setPhotoIndex(photos.length - 1);
-      setImgUrl(photos[photoIndex]);
+      //otherwise go to the end of the photos
+      setPhotoIndex(totalPhotos);
     }
-    console.log("back:  photoIndex:", photoIndex, "::  imgUrl:", imgUrl);
   };
   return (
     <div className="card-content">
@@ -47,8 +42,8 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           <LazyLoadImage
             data-testid="lazyLoadImage"
             className="plantStorePhoto"
-            src={imgUrl}
-            alt={photos[0]}
+            src={photos[photoIndex]}
+            alt={imgUrl}
             onError={addDefaultSrc}
           />
         </div>
@@ -59,7 +54,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           data-testid="imageBackward"
           className="pagination-previous backwardArrow"
           onClick={() => {
-            setNewPhotoBackward(1);
+            photoBackward();
           }}
         >
           {"<"}
@@ -68,7 +63,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           data-testid="imageForward"
           className="pagination-next forwardArrow"
           onClick={() => {
-            setNewPhotoForward(1);
+            photoForward();
           }}
         >
           {">"}
