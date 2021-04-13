@@ -9,7 +9,7 @@ import TopNav from "./components/topNav";
 import "./App.scss";
 
 function App() {
-  const { storeIdToIndexMap, stores, selectedCity } = useContext(
+  const { storeIdToIndexMap, stores, selectedCity, city } = useContext(
     CityPageContext
   );
   const [isModalOpen, setModalOpen] = useState(false);
@@ -17,6 +17,7 @@ function App() {
   return (
     <CityPageContext.Provider
       value={{
+        city,
         selectedCity,
         selectedStore,
         setSelectedStore,
@@ -28,7 +29,7 @@ function App() {
     >
       <div className="App">
         <header className="App-header"></header>
-        <TopNav seletedCity={selectedCity} />
+        <TopNav city={city} seletedCity={selectedCity} />
         <Map />
         {stores.map((store) => (
           <LazyLoadComponent>

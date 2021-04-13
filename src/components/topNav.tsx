@@ -1,41 +1,77 @@
-import react, { FunctionComponent } from "react";
-import { MapCoordinates } from "../database/stores";
+import react, { FunctionComponent, useState, useEffect } from "react";
+import classNames from "classnames";
+import { MapCoordinates, CityDeets } from "../database/stores";
 import { getWeather } from "../database/weatherResults";
-const dotenv = require("dotenv"); // gives me access to my env file
-dotenv.config({ debug: process.env.DEBUG });
+
 export interface TopNavProps {
   seletedCity: MapCoordinates;
+  city: CityDeets;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
-  if (!sessionStorage.weather) {
-    //check if weather session storage isnt set yet.
-    getWeather();
+  const { city } = TopNavProps;
+  const [isLoading, setLoading] = useState(true);
+  const [isActive, setActive] = useState(false);
+  function toggleActive() {
+    setActive(!isActive);
+    console.log(isActive);
   }
-  var weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);
-  console.log("kjdkjsdkjh", weatherObj);
-  return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <span
-          role="button"
-          className="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </span>
+  getWeather();
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => setLoading(!isLoading), 400);
+    }
+  });
+
+  const weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);
+  return isLoading ? null : (
+    <nav className="navbar" id="navbarBasicExample" role="navigation">
+      <div
+        onClick={(event) => {
+          toggleActive();
+        }}
+        role="button"
+        className={classNames(
+          "navbar-burger",
+          `${isActive ? "is-active" : ""}`
+        )}
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
+      >
+        <span aria-hidden="true"> </span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </div>
+      <div
+        className={classNames(
+          `${isActive ? "is-active" : ""}`,
+          "navbar-menu",
+          "has-dropdown"
+        )}
+      >
+        <div className="navbar-item has-dropdown">
+          <div className="navbar-dropdown">
+            <div className="navbar-end">
+              <div className="navbar-item">{city.city + ", " + city.state}</div>
+              <div className="navbar-item ">
+                Currently
+                {" " +
+                  weatherObj.currently.apparentTemperature.toFixed(0) +
+                  " "}
+                °
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <div className="navbar-item">Home</div>
-          <div className="navbar-item">
-            Current Tempature {weatherObj.apparentTemperature}
+      <div className="navbar-menu" data-testid="NavbarItems">
+        <div className="navbar-end">
+          <div className="navbar-item">{city.city + ", " + city.state}</div>
+          <div className="navbar-item ">
+            Currently
+            {" " + weatherObj.currently.apparentTemperature.toFixed(0) + " "}°
           </div>
-          <div className="navbar-item ">More</div>
         </div>
       </div>
     </nav>

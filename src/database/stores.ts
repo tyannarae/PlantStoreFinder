@@ -19,7 +19,7 @@ export interface MapCoordinates {
     lng: number,
 }
 //each city will contain corrdinates for our map component plus the list of stores
-export interface City {
+export interface CityDeets {
     city: string, 
     state: string,
     mapCoordinates: MapCoordinates,
@@ -27,7 +27,7 @@ export interface City {
         Array<Store>,
 }
 //below is our database
-export const Stores: Array<City> = [
+export const Stores: Array<CityDeets> = [
   {
     city: "Austin",
     state: "Texas",
