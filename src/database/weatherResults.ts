@@ -22,3 +22,4 @@ export async function getWeather() {
   weather = body
   setSessionStorage()
 }
+export const weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);

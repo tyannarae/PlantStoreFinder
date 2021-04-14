@@ -1,29 +1,20 @@
-import react, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 import classNames from "classnames";
 import { MapCoordinates, CityDeets } from "../database/stores";
-import { getWeather } from "../database/weatherResults";
 
 export interface TopNavProps {
   seletedCity: MapCoordinates;
   city: CityDeets;
+  weather: any;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
-  const { city } = TopNavProps;
-  const [isLoading, setLoading] = useState(true);
   const [isActive, setActive] = useState(false);
+  const { city, weather } = TopNavProps;
   function toggleActive() {
     setActive(!isActive);
-    console.log(isActive);
   }
-  getWeather();
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => setLoading(!isLoading), 400);
-    }
-  });
 
-  const weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);
-  return isLoading ? null : (
+  return (
     <nav className="navbar" id="navbarBasicExample" role="navigation">
       <div
         onClick={(event) => {
@@ -55,10 +46,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
               <div className="navbar-item">{city.city + ", " + city.state}</div>
               <div className="navbar-item ">
                 Currently
-                {" " +
-                  weatherObj.currently.apparentTemperature.toFixed(0) +
-                  " "}
-                °
+                {" " + weather.currently.apparentTemperature.toFixed(0) + " "}°
               </div>
             </div>
           </div>
@@ -68,9 +56,9 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
       <div className="navbar-menu" data-testid="NavbarItems">
         <div className="navbar-end">
           <div className="navbar-item">{city.city + ", " + city.state}</div>
-          <div className="navbar-item ">
+          <div className="navbar-item" data-testid="temp">
             Currently
-            {" " + weatherObj.currently.apparentTemperature.toFixed(0) + " "}°
+            {" " + weather.currently.apparentTemperature.toFixed(0) + " "}°
           </div>
         </div>
       </div>
