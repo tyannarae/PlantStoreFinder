@@ -9,7 +9,7 @@ import "./App.scss";
 
 function App() {
   const { storeIdToIndexMap, stores } = useContext(CityPageContext);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   return (
     <CityPageContext.Provider
@@ -23,14 +23,19 @@ function App() {
       }}
     >
       <div className="App">
-        <header className="App-header"></header>
-        <Map />
-        {stores.map((store) => (
-          <LazyLoadComponent>
-            <StoreMedia photos={store.photos} />
-            <StoreDetails store={store} key={store.id} />
-          </LazyLoadComponent>
-        ))}
+        <div className="mapOutterContainer" style={{ width: "50vw" }}>
+          <Map />
+        </div>
+        <div className="storesContainer">
+          {stores.map((store) => (
+            <div className="storeContainer">
+              <LazyLoadComponent>
+                <StoreDetails store={store} key={store.id} />
+                <StoreMedia photos={store.photos} />
+              </LazyLoadComponent>
+            </div>
+          ))}
+        </div>
       </div>
     </CityPageContext.Provider>
   );

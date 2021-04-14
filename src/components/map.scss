@@ -1,5 +1,14 @@
 //DO NOT DELETE.
 #mapid {
   //this is manditory when using leaflet maps.
-  height: 180px;
+  // height: 180px;
+  height: 100vh;
+  width: 50vw;
+}
+
+@media screen and (max-width: 767px) {
+  #mapid {
+    width: 100vw;
+    height: 70vh;
+  }
 }
