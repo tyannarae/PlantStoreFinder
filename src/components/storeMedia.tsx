@@ -10,8 +10,8 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
   const { photos } = StoreMediaProps;
-  const [totalPhotos] = useState(photos.length - 1);
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const [totalPhotos] = useState<number>(photos.length - 1);
+  const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl] = useState<string>(fallbackImg);
 
   function addDefaultSrc() {

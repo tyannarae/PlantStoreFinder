@@ -9,7 +9,7 @@ import "./App.scss";
 
 function App() {
   const { storeIdToIndexMap, stores } = useContext(CityPageContext);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   return (
     <CityPageContext.Provider
