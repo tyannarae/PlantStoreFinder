@@ -1,3 +1,51 @@
+.card-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.forwardArrow {
+  position: absolute;
+  top: 70%;
+  right: 1em;
+}
+.backwardArrow {
+  position: absolute;
+  top: 70%;
+  left: 1em;
+}
 .plantStorePhoto {
-  padding-top: 0;
+  width: 20em;
+  height: 17em;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 414px) {
+  .forwardArrow {
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    right: 4em;
+  }
+  .backwardArrow {
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    left: 4em;
+  }
+}
+@media screen and (min-width: 415px) and (max-width: 769px) {
+  .forwardArrow {
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    right: 3em;
+  }
+  .backwardArrow {
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    left: 3em;
+  }
 }

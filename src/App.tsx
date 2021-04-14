@@ -13,8 +13,8 @@ function App() {
   const { storeIdToIndexMap, stores, selectedCity, city } = useContext(
     CityPageContext
   );
-  const [isLoading, setLoading] = useState(true);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   getWeather();
   if (isLoading) {
@@ -34,27 +34,32 @@ function App() {
         storeIdToIndexMap,
       }}
     >
-      {isLoading ? (
-        <div data-testid="loading">loading...</div>
-      ) : (
-        <div className="App">
-          <header className="App-header"></header>
-          <LazyLoadComponent>
+      <div className="App">
+        <LazyLoadComponent>
+          <div className="navContainer">
             <TopNav
               weather={weatherObj}
               city={city}
               seletedCity={selectedCity}
             />
-          </LazyLoadComponent>
-          <Map />
-          {stores.map((store) => (
-            <LazyLoadComponent>
-              <StoreMedia photos={store.photos} />
-              <StoreDetails store={store} key={store.id} />
-            </LazyLoadComponent>
-          ))}
+          </div>
+        </LazyLoadComponent>
+        <div className="wrapper">
+          <div className="mapOutterContainer" style={{ width: "50vw" }}>
+            <Map />
+          </div>
+          <div className="storesContainer ">
+            {stores.map((store) => (
+              <div className="storeContainer">
+                <LazyLoadComponent>
+                  <StoreDetails store={store} key={store.id} />
+                  <StoreMedia photos={store.photos} />
+                </LazyLoadComponent>
+              </div>
+            ))}
+          </div>
         </div>
-      )}
+      </div>
     </CityPageContext.Provider>
   );
 }

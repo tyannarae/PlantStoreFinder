@@ -1,28 +1,35 @@
 @import "./globalStyles/colors.scss";
 .App {
   text-align: center;
+  width: fit-content;
+  block-size: fit-content;
+}
+.wrapper {
+  display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.storesContainer {
+  width: fit-content;
+  block-size: fit-content;
+  width: 50%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.storeContainer {
+  position: relative;
+  border-bottom: 0.01em solid $offWhite;
+  border-right: 0.01em solid $offWhite;
+  border-bottom-right-radius: 0.1em;
+  border-top-right-radius: 0.1em;
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    display: block;
   }
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  .storesContainer {
+    width: 100vw;
   }
 }
