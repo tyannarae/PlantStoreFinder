@@ -1,5 +1,4 @@
 import {Stores} from '../database/stores'
-import { CityPageContext } from "../context/pages/cityPage";
 export let temp: string;
 let weather:any;
 

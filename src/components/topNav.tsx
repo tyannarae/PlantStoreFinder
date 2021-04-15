@@ -8,13 +8,12 @@ export interface TopNavProps {
   city: CityDetails;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
-  //set loading state here
-  //call weather results
-  //use effect hook works after weather results are resolved. setting loading to false
   const [isActive, setActive] = useState(false);
   const [isLoading, setLoading] = useState<boolean | null>(true);
   const { city } = TopNavProps;
+  //call for weather results
   getWeather(city.mapCoordinates.lat, city.mapCoordinates.lng);
+  //use effect hook works after weather results are resolved. setting loading to false
   useEffect(() => {
     if (temp) {
       setLoading(false);
