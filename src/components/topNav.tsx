@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import classNames from "classnames";
-import { temp } from "../database/weatherResults";
+import { getWeather, temp } from "../database/weatherResults";
 import { MapCoordinates, CityDetails } from "../database/stores";
 
 export interface TopNavProps {
@@ -8,13 +8,22 @@ export interface TopNavProps {
   city: CityDetails;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
+  //set loading state here
+  //call weather results
+  //use effect hook works after weather results are resolved. setting loading to false
   const [isActive, setActive] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const { city } = TopNavProps;
+  if (isLoading) {
+    setTimeout(() => setLoading(!isLoading), 300);
+  }
   function toggleActive() {
     setActive(!isActive);
   }
+  getWeather(city.mapCoordinates.lat, city.mapCoordinates.lng);
   //changing the weather string into a number so that we can remove decimals later on.
-  const tempature: number = +temp;
+  let tempature: number = +temp;
+
   //check that there is a tempature avaiable. if not, dont display the temp.
   const isTempSet = () => {
     //temp is available
@@ -47,7 +56,9 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
     else return null;
   };
 
-  return (
+  return isLoading ? (
+    <div>loading..</div>
+  ) : (
     <nav className="navbar" id="navbarBasicExample" role="navigation">
       <div
         onClick={(event) => {
@@ -91,6 +102,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
       </div>
     </nav>
   );
+  //
 };
 
 export default TopNav;

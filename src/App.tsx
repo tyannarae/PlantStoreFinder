@@ -12,12 +12,8 @@ function App() {
   const { storeIdToIndexMap, stores, selectedCity, city } = useContext(
     CityPageContext
   );
-  const [isLoading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
-  if (isLoading) {
-    setTimeout(() => setLoading(!isLoading), 300);
-  }
   return (
     <CityPageContext.Provider
       value={{
@@ -32,30 +28,26 @@ function App() {
       }}
     >
       <div className="App">
-        {isLoading ? (
-          <div>loading..</div>
-        ) : (
-          <div>
-            <div className="navContainer">
-              <TopNav city={city} seletedCity={selectedCity} />
+        <div>
+          <div className="navContainer">
+            <TopNav city={city} seletedCity={selectedCity} />
+          </div>
+          <div className="wrapper">
+            <div className="mapOutterContainer" style={{ width: "50vw" }}>
+              <Map />
             </div>
-            <div className="wrapper">
-              <div className="mapOutterContainer" style={{ width: "50vw" }}>
-                <Map />
-              </div>
-              <div className="storesContainer ">
-                {stores.map((store) => (
-                  <div className="storeContainer">
-                    <LazyLoadComponent>
-                      <StoreDetails store={store} key={store.id} />
-                      <StoreMedia photos={store.photos} />
-                    </LazyLoadComponent>
-                  </div>
-                ))}
-              </div>
+            <div className="storesContainer ">
+              {stores.map((store) => (
+                <div className="storeContainer">
+                  <LazyLoadComponent>
+                    <StoreDetails store={store} key={store.id} />
+                    <StoreMedia photos={store.photos} />
+                  </LazyLoadComponent>
+                </div>
+              ))}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </CityPageContext.Provider>
   );
