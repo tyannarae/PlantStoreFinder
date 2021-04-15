@@ -1,15 +1,6 @@
-const dotenv = require("dotenv");
-dotenv.config({ debug: process.env.DEBUG });
-export const collectionName = "weather";
-export const env = {
-  port: process.env.DARK_SKY_API_KEY,
-};
-let weather: any;
+export let temp: string;
+let weather:any;
 
-
-const setSessionStorage =() =>{
-  window.sessionStorage.setItem(collectionName, JSON.stringify(weather)); 
-  }
 
 // how the user can retreive tempature data for the city 
 export async function getWeather() {
@@ -19,7 +10,7 @@ export async function getWeather() {
     "-97.757650";
   const response = await fetch(darkSkyUrl);
   const body = await response.json();
-  weather = body
-  setSessionStorage()
+  temp = JSON.stringify(body.currently.apparentTemperature)
 }
-export const weatherObj = JSON.parse(sessionStorage.getItem("weather") as string);
+getWeather();
+

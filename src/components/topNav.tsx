@@ -46,7 +46,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
               <div className="navbar-item">{city.city + ", " + city.state}</div>
               <div className="navbar-item ">
                 Currently
-                {" " + weather.currently.apparentTemperature.toFixed(0) + " "}°
+                {" " + weather + " "}°
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
           <div className="navbar-item">{city.city + ", " + city.state}</div>
           <div className="navbar-item" data-testid="temp">
             Currently
-            {" " + weather.currently.apparentTemperature.toFixed(0) + " "}°
+            {" " + weather + " "}°
           </div>
         </div>
       </div>
