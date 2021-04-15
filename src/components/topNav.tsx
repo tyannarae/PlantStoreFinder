@@ -1,11 +1,11 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState } from "react";
 import classNames from "classnames";
 import { MapCoordinates, CityDeets } from "../database/stores";
 
 export interface TopNavProps {
   seletedCity: MapCoordinates;
   city: CityDeets;
-  weather: any;
+  weather: string;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   const [isActive, setActive] = useState(false);
@@ -13,6 +13,8 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   function toggleActive() {
     setActive(!isActive);
   }
+  //changing the weather string into a number so that we can remove decimals later on.
+  const tempature: number = +weather;
 
   return (
     <nav className="navbar" id="navbarBasicExample" role="navigation">
@@ -46,7 +48,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
               <div className="navbar-item">{city.city + ", " + city.state}</div>
               <div className="navbar-item ">
                 Currently
-                {" " + weather + " "}°
+                {" " + tempature.toFixed(0) + " "}°
               </div>
             </div>
           </div>
@@ -58,7 +60,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
           <div className="navbar-item">{city.city + ", " + city.state}</div>
           <div className="navbar-item" data-testid="temp">
             Currently
-            {" " + weather + " "}°
+            {" " + tempature.toFixed(0) + " "}°
           </div>
         </div>
       </div>
