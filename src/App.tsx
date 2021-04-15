@@ -4,7 +4,6 @@ import { Store } from "./database/stores";
 import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
 import { StoreDetails } from "./components/storeDetails";
-import { temp } from "./database/weatherResults";
 import Map from "./components/map";
 import TopNav from "./components/topNav";
 import "./App.scss";
@@ -37,11 +36,9 @@ function App() {
           <div>loading..</div>
         ) : (
           <div>
-            <LazyLoadComponent>
-              <div className="navContainer">
-                <TopNav weather={temp} city={city} seletedCity={selectedCity} />
-              </div>
-            </LazyLoadComponent>
+            <div className="navContainer">
+              <TopNav city={city} seletedCity={selectedCity} />
+            </div>
             <div className="wrapper">
               <div className="mapOutterContainer" style={{ width: "50vw" }}>
                 <Map />
