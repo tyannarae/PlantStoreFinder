@@ -34,7 +34,7 @@ export const CityPageContext = createContext<CityPageContextType>({
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
   storeIdToIndexMap: mapStoreIdsToIndex(stores),
-  selectedStore: stores[0],
+  selectedStore: stores[3],
   selectedCity: Stores[0].mapCoordinates,
   setSelectedStore: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),

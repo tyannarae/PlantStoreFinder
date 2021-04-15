@@ -5,11 +5,12 @@ import "./storeMedia.scss";
 
 export interface StoreMediaProps {
   photos: Array<string>;
+  id: string;
 }
 export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
-  const { photos } = StoreMediaProps;
+  const { photos, id } = StoreMediaProps;
   const [totalPhotos] = useState<number>(photos.length - 1);
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl] = useState<string>(fallbackImg);
@@ -37,8 +38,8 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   };
   return (
     <div className="card-content">
-      <div className="">
-        <div className="">
+      <div>
+        <div>
           <LazyLoadImage
             data-testid="lazyLoadImage"
             className="plantStorePhoto"
@@ -49,7 +50,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
         </div>
       </div>
 
-      <div className="">
+      <div>
         <div
           data-testid="imageBackward"
           className="pagination-previous backwardArrow"

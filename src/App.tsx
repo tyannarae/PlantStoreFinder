@@ -14,6 +14,7 @@ function App() {
   );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+
   return (
     <CityPageContext.Provider
       value={{
@@ -39,8 +40,8 @@ function App() {
               {stores.map((store) => (
                 <div className="storeContainer">
                   <LazyLoadComponent>
-                    <StoreDetails store={store} key={store.id} />
-                    <StoreMedia photos={store.photos} />
+                    <StoreDetails store={store} />
+                    <StoreMedia photos={store.photos} id={store.id} />
                   </LazyLoadComponent>
                 </div>
               ))}

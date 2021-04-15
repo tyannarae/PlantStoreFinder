@@ -25,12 +25,12 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     CityPageContext
   );
   //takes the id of the store that was clicked and updates the selectedStore
-  //this will be moved to the Store component once that has been created.
   const setNewStore = (id: String) => {
-    setSelectedStore(stores[storeIdToIndexMap[`${id}`]]);
+    return setSelectedStore(stores[storeIdToIndexMap[`${id}`]]);
   };
   return (
     <div
+      key={id}
       className="card-content "
       onClick={(event) => {
         setNewStore(id);

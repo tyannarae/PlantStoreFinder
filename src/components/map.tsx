@@ -1,5 +1,11 @@
-import React, { FunctionComponent } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { FunctionComponent, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import "./map.scss";
 
 export interface MapDetailsProps {
@@ -7,11 +13,14 @@ export interface MapDetailsProps {
 }
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { stores } = MapDetailsProps;
+  const { lat, lng } = stores[0];
+  const { id } = stores;
+
   return (
     <div data-testid="mapContainer">
       <MapContainer
         id="mapid"
-        center={[30.2672, -97.7431]}
+        center={[Number(lat), Number(lng)]}
         zoom={13}
         scrollWheelZoom={false}
       >
@@ -21,7 +30,14 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
         />
         {stores.map((store: any) => (
           <Marker position={[store.lat, store.lng]}>
-            <Popup>{store.bussinessName}</Popup>
+            <Popup>
+              {store.bussinessName}
+              <div
+                onClick={(event) => {
+                  console.log(`clicked ${store.id}`);
+                }}
+              ></div>
+            </Popup>
           </Marker>
         ))}
       </MapContainer>
