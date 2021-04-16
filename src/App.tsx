@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { Store } from "./database/stores";
+import { MediaModal } from "./components/mediaModal";
 import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
 import { StoreDetails } from "./components/storeDetails";
@@ -11,6 +12,7 @@ function App() {
   const { storeIdToIndexMap, stores } = useContext(CityPageContext);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+
   return (
     <CityPageContext.Provider
       value={{
@@ -23,6 +25,7 @@ function App() {
       }}
     >
       <div className="App">
+        {isModalOpen ? <MediaModal /> : undefined}
         <div className="mapOutterContainer" style={{ width: "50vw" }}>
           <Map />
         </div>
