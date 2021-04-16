@@ -1,21 +1,35 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { CityPageContext } from "../context/pages/cityPage";
 import fallbackImg from "../media/placeholder.png";
 import "./storeMedia.scss";
 
 export interface StoreMediaProps {
   photos: Array<string>;
+  id: string;
 }
 export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
-  const { photos } = StoreMediaProps;
+  const {
+    isModalOpen,
+    setModalOpen,
+    selectedStore,
+    setSelectedStore,
+  } = useContext(CityPageContext);
+  const { photos, id } = StoreMediaProps;
   const [totalPhotos] = useState<number>(photos.length - 1);
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl] = useState<string>(fallbackImg);
 
   function addDefaultSrc() {
     return fallbackImg;
+  }
+
+  function handleImgClick() {
+    setModalOpen(true);
+    console.log("modal open!", id);
+    // setSelectedStore(id);
   }
   //moves forward 1 photo
   const photoForward = () => {
@@ -36,7 +50,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
     }
   };
   return (
-    <div className="card-content">
+    <div className="card-content" onClick={handleImgClick}>
       <div className="">
         <div className="">
           <LazyLoadImage
