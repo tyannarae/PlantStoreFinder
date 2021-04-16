@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export const Map = () => {
+  const { isModalOpen } = useContext(CityPageContext);
   /* once we have merged context and the database I will update this information rather than hard coding it. */
+
+  //change position: sticky; on mapOutterContainer when this is clicked.
+
   return (
     <div data-testid="mapContainer">
       <MapContainer

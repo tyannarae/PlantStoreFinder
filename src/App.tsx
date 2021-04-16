@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
+import classNames from "classnames";
 import { Store } from "./database/stores";
 import { MediaModal } from "./components/mediaModal";
 import { CityPageContext } from "./context/pages/cityPage";
@@ -25,8 +26,14 @@ function App() {
       }}
     >
       <div className="App">
-        {isModalOpen ? <MediaModal /> : undefined}
-        <div className="mapOutterContainer" style={{ width: "50vw" }}>
+        {isModalOpen ? <MediaModal stores={stores} /> : undefined}
+        <div
+          className={classNames(
+            "mapOutterContainer",
+            `${isModalOpen ? "modalIsOpen" : ""}`
+          )}
+          style={{ width: "50vw" }}
+        >
           <Map />
         </div>
         <div className="storesContainer">

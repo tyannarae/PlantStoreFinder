@@ -26,7 +26,9 @@
   border-bottom-right-radius: 0.1em;
   border-top-right-radius: 0.1em;
 }
-
+.modalIsOpen {
+  position: sticky !important;
+}
 @media screen and (max-width: 767px) {
   .App {
     display: block;

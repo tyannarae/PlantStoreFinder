@@ -16,6 +16,8 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
     setModalOpen,
     selectedStore,
     setSelectedStore,
+    storeIdToIndexMap,
+    stores,
   } = useContext(CityPageContext);
   const { photos, id } = StoreMediaProps;
   const [totalPhotos] = useState<number>(photos.length - 1);
@@ -28,8 +30,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
 
   function handleImgClick() {
     setModalOpen(true);
-    console.log("modal open!", id);
-    // setSelectedStore(id);
+    setSelectedStore(stores[storeIdToIndexMap[id]]);
   }
   //moves forward 1 photo
   const photoForward = () => {
