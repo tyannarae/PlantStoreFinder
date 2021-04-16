@@ -51,9 +51,9 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
     }
   };
   return (
-    <div className="card-content" onClick={handleImgClick}>
+    <div className="card-content">
       <div className="">
-        <div className="">
+        <div onClick={handleImgClick}>
           <LazyLoadImage
             data-testid="lazyLoadImage"
             className="plantStorePhoto"
