@@ -9,8 +9,8 @@ export interface TopNavProps {
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   const [temp, setTemp] = useState<number>();
-  const [isActive, setActive] = useState(false);
-  const [isLoading, setLoading] = useState<boolean | null>(true);
+  const [isActive, setActive] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const { city } = TopNavProps;
 
   //get the weather data
