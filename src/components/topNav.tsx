@@ -13,8 +13,8 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   const [isLoading, setLoading] = useState<boolean | null>(true);
   const { city } = TopNavProps;
 
+  //get the weather data
   useEffect(() => {
-    //get the weather data
     const tempature = async () => {
       let tempature = await getWeather(
         city.mapCoordinates.lat,
@@ -31,7 +31,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   }
 
   //check that there is a tempature avaiable. if not, dont display the temp.
-  const isTempSet = () => {
+  const renderTempature = () => {
     //temp is available
     if (temp) {
       return (
@@ -45,7 +45,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
     return null;
   };
   //check that city and state details are avaiable. only display what is avaiable.
-  const isCityDataSet = () => {
+  const renderCityData = () => {
     //both city and state avaiable
     if (city.city && city.state) {
       return <div className="navbar-item">{city.city + ", " + city.state}</div>;
@@ -61,6 +61,7 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
     //nothing aviable
     return null;
   };
+
   return isLoading ? (
     <div>loading..</div>
   ) : (
@@ -92,8 +93,8 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
         <div className="navbar-item has-dropdown">
           <div className="navbar-dropdown">
             <div className="navbar-end">
-              {isCityDataSet()}
-              {isTempSet()}
+              {renderCityData()}
+              {renderTempature()}
             </div>
           </div>
         </div>
@@ -101,8 +102,8 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
 
       <div className="navbar-menu" data-testid="NavbarItems">
         <div className="navbar-end">
-          {isCityDataSet()}
-          {isTempSet()}
+          {renderCityData()}
+          {renderTempature()}
         </div>
       </div>
     </nav>
