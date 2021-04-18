@@ -38,12 +38,10 @@ function App() {
             </div>
             <div className="storesContainer ">
               {stores.map((store) => (
-                <div className="storeContainer">
-                  <LazyLoadComponent>
-                    <StoreDetails store={store} key={store.id} />
-                    <StoreMedia photos={store.photos} />
-                  </LazyLoadComponent>
-                </div>
+                <LazyLoadComponent>
+                  <StoreDetails store={store} key={store.id} />
+                  <StoreMedia photos={store.photos} />
+                </LazyLoadComponent>
               ))}
             </div>
           </div>
