@@ -1,9 +1,13 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
-import { Store } from "../database/stores";
+import {
+  photoBackward,
+  photoForward,
+  addDefaultSrc,
+} from "../utils/pagination";
 
 export interface MediaMediaProps {
-  stores: Array<Store>;
+  photos: Array<string>;
 }
 export const MediaModal: FunctionComponent<MediaMediaProps> = (
   MediaMediaProps
@@ -14,7 +18,9 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
     selectedStore,
     setSelectedStore,
   } = useContext(CityPageContext);
-  console.log("selectedStore", selectedStore);
+
+  const { photos } = MediaMediaProps;
+  const [imgUrl] = useState<string>(addDefaultSrc());
   //   const {stores[selectedStore]} = MediaMediaProps
   function handleImgClick() {
     setModalOpen(false);
@@ -23,6 +29,17 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
   return (
     <div className="modal is-active ">
       <div className="modal-background" onClick={handleImgClick}>
+        <div className="">
+          <div onClick={handleImgClick}>
+            <img
+              data-testid="lazyLoadImage"
+              className="plantStorePhoto"
+              src={photos[0]}
+              alt={imgUrl}
+              onError={addDefaultSrc}
+            />
+          </div>
+        </div>
         <div className="modal-card"> Media is open!{selectedStore.id}</div>
       </div>
     </div>

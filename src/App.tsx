@@ -26,7 +26,7 @@ function App() {
       }}
     >
       <div className="App">
-        {isModalOpen ? <MediaModal stores={stores} /> : undefined}
+        {isModalOpen ? <MediaModal photos={selectedStore.photos} /> : undefined}
         <div
           className={classNames(
             "mapOutterContainer",
