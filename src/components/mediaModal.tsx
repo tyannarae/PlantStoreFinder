@@ -12,14 +12,12 @@ export interface MediaMediaProps {
 export const MediaModal: FunctionComponent<MediaMediaProps> = (
   MediaMediaProps
 ) => {
-  const {
-    isModalOpen,
-    setModalOpen,
-    selectedStore,
-    setSelectedStore,
-  } = useContext(CityPageContext);
-
+  const { setModalOpen, selectedStore, setSelectedStore } = useContext(
+    CityPageContext
+  );
   const { photos } = MediaMediaProps;
+  const [totalPhotos] = useState<number>(photos.length - 1);
+  const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl] = useState<string>(addDefaultSrc());
   //   const {stores[selectedStore]} = MediaMediaProps
   function handleImgClick() {
@@ -27,20 +25,39 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
     // setSelectedStore(id);
   }
   return (
-    <div className="modal is-active ">
-      <div className="modal-background" onClick={handleImgClick}>
-        <div className="">
-          <div onClick={handleImgClick}>
-            <img
-              data-testid="lazyLoadImage"
-              className="plantStorePhoto"
-              src={photos[0]}
-              alt={imgUrl}
-              onError={addDefaultSrc}
-            />
-          </div>
+    <div className="modal is-active">
+      <div className="modal-background">
+        <button className="button is-smallis-rounded" onClick={handleImgClick}>
+          X
+        </button>
+
+        <button
+          data-testid="imageBackward button"
+          className="pagination-previous backwardArrow"
+          onClick={() => {
+            photoBackward(photoIndex, totalPhotos, setPhotoIndex);
+          }}
+        >
+          {"<"}
+        </button>
+        <button
+          data-testid="imageForward button"
+          className="pagination-next forwardArrow"
+          onClick={() => {
+            photoForward(photoIndex, totalPhotos, setPhotoIndex);
+          }}
+        >
+          {">"}
+        </button>
+        <div onClick={handleImgClick}>
+          <img
+            data-testid="lazyLoadImage"
+            className="plantStorePhoto"
+            src={photos[photoIndex]}
+            alt={imgUrl}
+            onError={addDefaultSrc}
+          />
         </div>
-        <div className="modal-card"> Media is open!{selectedStore.id}</div>
       </div>
     </div>
   );
