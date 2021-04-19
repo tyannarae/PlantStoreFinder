@@ -36,7 +36,7 @@ function App() {
             <div className="mapOutterContainer" style={{ width: "50vw" }}>
               <Map />
             </div>
-            <div className="storesContainer ">
+            <div className="storesContainer">
               {stores.map((store) => (
                 <LazyLoadComponent>
                   <StoreDetails store={store} key={store.id} />
