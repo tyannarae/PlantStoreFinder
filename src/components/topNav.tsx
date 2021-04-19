@@ -5,7 +5,6 @@ import { MapCoordinates, CityDetails } from "../database/stores";
 import "./navbar.scss";
 
 export interface TopNavProps {
-  seletedCity: MapCoordinates;
   city: CityDetails;
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
@@ -29,10 +28,6 @@ export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
     getCurrentTempature();
     setLoading(false);
   }, [city]); //only makes call when a different city is chosen.
-
-  function toggleBurgerIsActive() {
-    setActive(!isActive);
-  }
 
   //check that there is a tempature avaiable. if not, dont display the temp.
   const renderTempature = () => {

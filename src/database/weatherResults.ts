@@ -10,8 +10,7 @@ export async function getWeather(lat: number, lng: number) {
     const response = await fetch(darkSkyUrl);
     const body = await response.json();
     let temp = JSON.stringify(body.currently.apparentTemperature);
-    let tempature: number = +temp;
-    return tempature;
+    return parseFloat(temp);
   } catch (e) {
     alert(e);
   }

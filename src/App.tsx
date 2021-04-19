@@ -30,7 +30,7 @@ function App() {
       <div className="App">
         <div>
           <div className="navContainer">
-            <TopNav city={city} seletedCity={seletedCity} />
+            <TopNav city={city} />
           </div>
           <div className="wrapper">
             <div className="mapOutterContainer" style={{ width: "50vw" }}>
@@ -38,10 +38,13 @@ function App() {
             </div>
             <div className="storesContainer">
               {stores.map((store) => (
-                <LazyLoadComponent>
+                // <LazyLoadComponent>
+                <div>
                   <StoreDetails store={store} key={store.id} />
                   <StoreMedia photos={store.photos} />
-                </LazyLoadComponent>
+                </div>
+
+                /* </LazyLoadComponent> */
               ))}
             </div>
           </div>
