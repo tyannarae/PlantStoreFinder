@@ -5,6 +5,7 @@ import {
   photoForward,
   addDefaultSrc,
 } from "../utils/pagination";
+import "./mediaModal.scss";
 
 export interface MediaMediaProps {
   photos: Array<string>;
@@ -20,39 +21,38 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl] = useState<string>(addDefaultSrc());
   //   const {stores[selectedStore]} = MediaMediaProps
-  function handleImgClick() {
+  function closeModal() {
     setModalOpen(false);
     // setSelectedStore(id);
   }
   return (
     <div className="modal is-active">
       <div className="modal-background">
-        <button className="button is-smallis-rounded" onClick={handleImgClick}>
-          X
-        </button>
-
-        <button
-          data-testid="imageBackward button"
-          className="pagination-previous backwardArrow"
-          onClick={() => {
-            photoBackward(photoIndex, totalPhotos, setPhotoIndex);
-          }}
-        >
-          {"<"}
-        </button>
-        <button
-          data-testid="imageForward button"
-          className="pagination-next forwardArrow"
-          onClick={() => {
-            photoForward(photoIndex, totalPhotos, setPhotoIndex);
-          }}
-        >
-          {">"}
-        </button>
-        <div onClick={handleImgClick}>
+        <div className="container">
+          <button className="exitButton" onClick={closeModal}>
+            X
+          </button>
+          <button
+            data-testid="imageBackward button"
+            className=" backwardArrowModal modalArrows"
+            onClick={() => {
+              photoBackward(photoIndex, totalPhotos, setPhotoIndex);
+            }}
+          >
+            {"<"}
+          </button>
+          <button
+            data-testid="imageForward button"
+            className=" forwardArrowModal modalArrows"
+            onClick={() => {
+              photoForward(photoIndex, totalPhotos, setPhotoIndex);
+            }}
+          >
+            {">"}
+          </button>
           <img
             data-testid="lazyLoadImage"
-            className="plantStorePhoto"
+            className="plantModalPhoto"
             src={photos[photoIndex]}
             alt={imgUrl}
             onError={addDefaultSrc}

@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+}
+.exitButton {
+  top: 15em;
+  position: absolute;
+  right: 3em;
+}
+.plantModalPhoto {
+  margin-top: 15%;
+  width: 75vw;
+  height: 81vh;
+  object-fit: cover;
+}
+
+.modalArrows {
+  top: 50%;
+}
+
+.forwardArrowModal {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+}
+.backwardArrowModal {
+  position: absolute;
+  top: 50%;
+  right: 80%;
+}
