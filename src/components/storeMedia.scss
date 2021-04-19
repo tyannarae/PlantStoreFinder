@@ -26,13 +26,15 @@
     background: white;
     border-radius: 2em;
     font-size: 65%;
-    right: 4em;
+    right: 5em;
+    top: -17em;
   }
   .backwardArrow {
     background: white;
     border-radius: 2em;
     font-size: 65%;
-    left: 4em;
+    left: 5em;
+    top: -17em;
   }
 }
 @media screen and (min-width: 415px) and (max-width: 769px) {
@@ -41,11 +43,13 @@
     border-radius: 2em;
     font-size: 65%;
     right: 3em;
+    top: -17em;
   }
   .backwardArrow {
     background: white;
     border-radius: 2em;
     font-size: 65%;
     left: 3em;
+    top: -17em;
   }
 }

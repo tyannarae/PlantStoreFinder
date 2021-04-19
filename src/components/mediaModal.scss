@@ -1,29 +1,38 @@
 .container {
-  position: relative;
+  //   position: relative;
+  height: 100vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 .exitButton {
-  top: 15em;
   position: absolute;
-  right: 3em;
+  right: 7.5em;
+  top: 3.25em;
 }
 .plantModalPhoto {
-  margin-top: 15%;
+  //   margin-top: 5vw;
   width: 75vw;
-  height: 81vh;
+  height: 85vh;
   object-fit: cover;
+  margin-bottom: auto;
+  margin-top: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .modalArrows {
-  top: 50%;
+  top: 20%;
 }
 
 .forwardArrowModal {
   position: absolute;
   top: 50%;
-  left: 80%;
+  left: 95%;
 }
 .backwardArrowModal {
   position: absolute;
   top: 50%;
-  right: 80%;
+  right: 95%;
 }

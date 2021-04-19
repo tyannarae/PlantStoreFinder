@@ -29,12 +29,12 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
     <div className="modal is-active">
       <div className="modal-background">
         <div className="container">
-          <button className="exitButton" onClick={closeModal}>
+          <button className="exitButton button" onClick={closeModal}>
             X
           </button>
           <button
             data-testid="imageBackward button"
-            className=" backwardArrowModal modalArrows"
+            className="backwardArrowModal modalArrows button "
             onClick={() => {
               photoBackward(photoIndex, totalPhotos, setPhotoIndex);
             }}
@@ -43,7 +43,7 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
           </button>
           <button
             data-testid="imageForward button"
-            className=" forwardArrowModal modalArrows"
+            className="forwardArrowModal modalArrows button "
             onClick={() => {
               photoForward(photoIndex, totalPhotos, setPhotoIndex);
             }}
