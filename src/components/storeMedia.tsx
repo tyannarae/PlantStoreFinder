@@ -49,7 +49,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
         </div>
       </div>
 
-      <div className="">
+      <div className="arrowContainer">
         <div
           data-testid="imageBackward"
           className="pagination-previous backwardArrow"

@@ -5,15 +5,20 @@ import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
 import { StoreDetails } from "./components/storeDetails";
 import Map from "./components/map";
+import TopNav from "./components/topNav";
 import "./App.scss";
 
 function App() {
-  const { storeIdToIndexMap, stores } = useContext(CityPageContext);
+  const { storeIdToIndexMap, stores, seletedCity, city } = useContext(
+    CityPageContext
+  );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   return (
     <CityPageContext.Provider
       value={{
+        city,
+        seletedCity,
         selectedStore,
         setSelectedStore,
         isModalOpen,
@@ -23,18 +28,26 @@ function App() {
       }}
     >
       <div className="App">
-        <div className="mapOutterContainer" style={{ width: "50vw" }}>
-          <Map />
-        </div>
-        <div className="storesContainer">
-          {stores.map((store) => (
-            <div className="storeContainer">
-              <LazyLoadComponent>
-                <StoreDetails store={store} key={store.id} />
-                <StoreMedia photos={store.photos} />
-              </LazyLoadComponent>
+        <div>
+          <div className="navContainer">
+            <TopNav city={city} />
+          </div>
+          <div className="wrapper">
+            <div className="mapOutterContainer" style={{ width: "50vw" }}>
+              <Map />
             </div>
-          ))}
+            <div className="storesContainer">
+              {stores.map((store) => (
+                // <LazyLoadComponent>
+                <div>
+                  <StoreDetails store={store} key={store.id} />
+                  <StoreMedia photos={store.photos} />
+                </div>
+
+                /* </LazyLoadComponent> */
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </CityPageContext.Provider>
