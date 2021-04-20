@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import {
   photoBackward,
@@ -13,14 +13,11 @@ export interface MediaModalProps {
 export const MediaModal: FunctionComponent<MediaModalProps> = (
   MediaModalProps
 ) => {
-  const { setModalOpen, selectedStore, setSelectedStore } = useContext(
-    CityPageContext
-  );
+  const { setModalOpen } = useContext(CityPageContext);
   const { photos } = MediaModalProps;
-  const [totalPhotos] = useState<number>(photos.length - 1);
+  const totalPhotos = photos.length - 1;
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const [imgUrl, setImgUrl] = useState<string>(photos[photoIndex]);
-  //   const {stores[selectedStore]} = MediaModalProps
   function closeModal() {
     setModalOpen(false);
   }
@@ -29,7 +26,7 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
       <div className="modal-background" onClick={closeModal}>
         <div className="container">
           <button
-            data-testid="imageBackward button"
+            data-testid="modalImgBackward"
             className="backwardArrowModal modalArrows button is-outlined"
             onClick={(event) => {
               event.stopPropagation();
@@ -40,7 +37,7 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
             {"<"}
           </button>
           <button
-            data-testid="imageForward button"
+            data-testid="modalImgForward"
             className="forwardArrowModal modalArrows button is-outlined"
             onClick={(event) => {
               event.stopPropagation();
@@ -52,15 +49,16 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
           </button>
           <div className="exitAndImgContainer">
             <button
+              data-testid="exitButton"
               className="exitButton button is-outlined"
               onClick={closeModal}
             >
               X
             </button>
             <img
-              data-testid="lazyLoadImage"
+              data-testid="modalImg"
               className="plantModalPhoto"
-              src={imgUrl}
+              src={photos[photoIndex]}
               alt={imgUrl}
               onError={addDefaultSrc}
             />

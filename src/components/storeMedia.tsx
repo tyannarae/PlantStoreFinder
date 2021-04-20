@@ -16,17 +16,15 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
   const {
-    isModalOpen,
     setModalOpen,
-    selectedStore,
     setSelectedStore,
     storeIdToIndexMap,
     stores,
   } = useContext(CityPageContext);
   const { photos, id } = StoreMediaProps;
-  const [totalPhotos] = useState<number>(photos.length - 1);
-  const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const [imgUrl] = useState<string>(addDefaultSrc());
+  const [imgUrl] = React.useState<string>(addDefaultSrc());
+  const totalPhotos = photos.length - 1;
+  const [photoIndex, setPhotoIndex] = React.useState<number>(0);
 
   function handleImgClick() {
     setModalOpen(true);
