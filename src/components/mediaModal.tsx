@@ -7,23 +7,22 @@ import {
 } from "../utils/pagination";
 import "./mediaModal.scss";
 
-export interface MediaMediaProps {
+export interface MediaModalProps {
   photos: Array<string>;
 }
-export const MediaModal: FunctionComponent<MediaMediaProps> = (
-  MediaMediaProps
+export const MediaModal: FunctionComponent<MediaModalProps> = (
+  MediaModalProps
 ) => {
   const { setModalOpen, selectedStore, setSelectedStore } = useContext(
     CityPageContext
   );
-  const { photos } = MediaMediaProps;
+  const { photos } = MediaModalProps;
   const [totalPhotos] = useState<number>(photos.length - 1);
   const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const [imgUrl] = useState<string>(addDefaultSrc());
-  //   const {stores[selectedStore]} = MediaMediaProps
+  const [imgUrl, setImgUrl] = useState<string>(photos[photoIndex]);
+  //   const {stores[selectedStore]} = MediaModalProps
   function closeModal() {
     setModalOpen(false);
-    // setSelectedStore(id);
   }
   return (
     <div className="modal is-active">
@@ -37,6 +36,7 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
             className="backwardArrowModal modalArrows button "
             onClick={() => {
               photoBackward(photoIndex, totalPhotos, setPhotoIndex);
+              setImgUrl(photos[photoIndex]);
             }}
           >
             {"<"}
@@ -46,6 +46,7 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
             className="forwardArrowModal modalArrows button "
             onClick={() => {
               photoForward(photoIndex, totalPhotos, setPhotoIndex);
+              setImgUrl(photos[photoIndex]);
             }}
           >
             {">"}
@@ -53,7 +54,7 @@ export const MediaModal: FunctionComponent<MediaMediaProps> = (
           <img
             data-testid="lazyLoadImage"
             className="plantModalPhoto"
-            src={photos[photoIndex]}
+            src={imgUrl}
             alt={imgUrl}
             onError={addDefaultSrc}
           />
