@@ -26,15 +26,13 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
   }
   return (
     <div className="modal is-active">
-      <div className="modal-background">
+      <div className="modal-background" onClick={closeModal}>
         <div className="container">
-          <button className="exitButton button" onClick={closeModal}>
-            X
-          </button>
           <button
             data-testid="imageBackward button"
-            className="backwardArrowModal modalArrows button "
-            onClick={() => {
+            className="backwardArrowModal modalArrows button is-outlined"
+            onClick={(event) => {
+              event.stopPropagation();
               photoBackward(photoIndex, totalPhotos, setPhotoIndex);
               setImgUrl(photos[photoIndex]);
             }}
@@ -43,21 +41,30 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
           </button>
           <button
             data-testid="imageForward button"
-            className="forwardArrowModal modalArrows button "
-            onClick={() => {
+            className="forwardArrowModal modalArrows button is-outlined"
+            onClick={(event) => {
+              event.stopPropagation();
               photoForward(photoIndex, totalPhotos, setPhotoIndex);
               setImgUrl(photos[photoIndex]);
             }}
           >
             {">"}
           </button>
-          <img
-            data-testid="lazyLoadImage"
-            className="plantModalPhoto"
-            src={imgUrl}
-            alt={imgUrl}
-            onError={addDefaultSrc}
-          />
+          <div className="exitAndImgContainer">
+            <button
+              className="exitButton button is-outlined"
+              onClick={closeModal}
+            >
+              X
+            </button>
+            <img
+              data-testid="lazyLoadImage"
+              className="plantModalPhoto"
+              src={imgUrl}
+              alt={imgUrl}
+              onError={addDefaultSrc}
+            />
+          </div>
         </div>
       </div>
     </div>
