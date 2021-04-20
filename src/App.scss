@@ -3,6 +3,8 @@
   text-align: center;
   width: fit-content;
   block-size: fit-content;
+}
+.wrapper {
   display: flex;
 }
 
@@ -15,10 +17,6 @@
   height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 .storeContainer {
   position: relative;
   border-bottom: 0.01em solid $offWhite;
@@ -30,7 +28,7 @@
   position: sticky;
 }
 @media screen and (max-width: 767px) {
-  .App {
+  .wrapper {
     display: block;
   }
   .storesContainer {
