@@ -17,7 +17,6 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
   const { photos } = MediaModalProps;
   const totalPhotos = photos.length - 1;
   const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const [imgUrl, setImgUrl] = useState<string>(photos[photoIndex]);
   function closeModal() {
     setModalOpen(false);
   }
@@ -31,7 +30,6 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
             onClick={(event) => {
               event.stopPropagation();
               photoBackward(photoIndex, totalPhotos, setPhotoIndex);
-              setImgUrl(photos[photoIndex]);
             }}
           >
             {"<"}
@@ -42,7 +40,6 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
             onClick={(event) => {
               event.stopPropagation();
               photoForward(photoIndex, totalPhotos, setPhotoIndex);
-              setImgUrl(photos[photoIndex]);
             }}
           >
             {">"}
@@ -59,7 +56,7 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
               data-testid="modalImg"
               className="plantModalPhoto"
               src={photos[photoIndex]}
-              alt={imgUrl}
+              alt={photos[photoIndex]}
               onError={addDefaultSrc}
             />
           </div>
