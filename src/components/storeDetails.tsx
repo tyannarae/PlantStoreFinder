@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useContext } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
+import { setNewStore } from "../utils/selectedStore";
 import fbLogo from "../media/fbLogo.png";
 import igLogo from "../media/igLogo.png";
 import "../components/storeDetails.scss";
@@ -24,16 +25,13 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   const { setSelectedStore, storeIdToIndexMap, stores } = useContext(
     CityPageContext
   );
-  //takes the id of the store that was clicked and updates the selectedStore
-  const setNewStore = (id: String) => {
-    return setSelectedStore(stores[storeIdToIndexMap[`${id}`]]);
-  };
+
   return (
     <div
       key={id}
       className="card-content "
       onClick={(event) => {
-        setNewStore(id);
+        setNewStore(id, setSelectedStore);
       }}
     >
       <div className="tile is-ancestor">

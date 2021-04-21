@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import { Store } from "./database/stores";
 import { CityPageContext } from "./context/pages/cityPage";
@@ -13,7 +13,10 @@ function App() {
     CityPageContext
   );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+  const [selectedStore, setSelectedStore] = useState<string>(stores[0].id);
+  useEffect(() => {
+    console.log(`new selected store is: ${selectedStore}`);
+  }, [selectedStore]);
 
   return (
     <CityPageContext.Provider

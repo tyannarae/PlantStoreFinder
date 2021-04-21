@@ -6,6 +6,7 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
+import { setNewStore } from "../utils/selectedStore";
 import "./map.scss";
 
 export interface MapDetailsProps {
@@ -15,6 +16,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { stores } = MapDetailsProps;
   const { lat, lng } = stores[0];
   const { id } = stores;
+  const [selectedStore, setSelectedStore] = useState<string>("");
 
   return (
     <div data-testid="mapContainer">
@@ -33,7 +35,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
             position={[store.lat, store.lng]}
             eventHandlers={{
               click: () => {
-                console.log(`marker, ${store.id} clicked`);
+                setNewStore(store.id, setSelectedStore);
               },
             }}
           >
