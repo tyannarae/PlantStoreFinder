@@ -29,15 +29,15 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {stores.map((store: any) => (
-          <Marker position={[store.lat, store.lng]}>
-            <Popup>
-              {store.bussinessName}
-              <div
-                onClick={(event) => {
-                  console.log(`clicked ${store.id}`);
-                }}
-              ></div>
-            </Popup>
+          <Marker
+            position={[store.lat, store.lng]}
+            eventHandlers={{
+              click: () => {
+                console.log(`marker, ${store.id} clicked`);
+              },
+            }}
+          >
+            <Popup>{store.bussinessName}</Popup>
           </Marker>
         ))}
       </MapContainer>
