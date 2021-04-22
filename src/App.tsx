@@ -39,7 +39,13 @@ function App() {
           <TopNav city={city} />
         </div>
         <div className="wrapper">
-          <div className="mapOutterContainer" style={{ width: "50vw" }}>
+          <div
+            className={classNames(
+              "mapOutterContainer",
+              `${isModalOpen ? "modalIsOpen" : ""}`
+            )}
+            style={{ width: "50vw" }}
+          >
             <Map stores={stores} />
           </div>
           <div className="storesContainer">
