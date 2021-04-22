@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./map.scss";
 
 export const Map = () => {
-  /* once we have merged context and the database I will update this information rather than hard coding it. */
   return (
     <div data-testid="mapContainer">
       <MapContainer

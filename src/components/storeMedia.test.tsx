@@ -25,16 +25,16 @@ describe("StoreMedia", () => {
   };
   const photos = fakeStore.photos;
   it("Renders with the first photo in the array visible", () => {
-    render(<StoreMedia photos={photos} />);
+    render(<StoreMedia id={fakeStore.id} photos={photos} />);
     expect(screen.getByTestId("lazyLoadImage").src).toEqual(photos[0]);
   });
   it("onClick event fires and updates to the next photo", () => {
-    render(<StoreMedia photos={photos} />);
+    render(<StoreMedia id={fakeStore.id} photos={photos} />);
     fireEvent.click(screen.getByTestId("imageForward"));
     expect(screen.getByTestId("lazyLoadImage").src).toEqual(photos[1]);
   });
   it("onClick event fires and updates to the previous photo", () => {
-    render(<StoreMedia photos={photos} />);
+    render(<StoreMedia id={fakeStore.id} photos={photos} />);
     fireEvent.click(screen.getByTestId("imageBackward"));
     expect(screen.getByTestId("lazyLoadImage").src).toEqual(photos[2]);
   });

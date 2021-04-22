@@ -7,6 +7,7 @@ import "../components/storeDetails.scss";
 
 export interface StoreDetailsProps {
   store: Store;
+  id: string;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps

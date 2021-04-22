@@ -10,7 +10,7 @@
   background: white;
   border-radius: 2em;
   font-size: 65%;
-  right: 4em;
+  right: 1em;
 }
 .backwardArrow {
   margin-right: 23em;
@@ -18,7 +18,7 @@
   background: white;
   border-radius: 2em;
   font-size: 65%;
-  left: 4em;
+  left: 1em;
 }
 .plantStorePhoto {
   width: 20em;
@@ -26,7 +26,7 @@
   object-fit: cover;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 280px) {
   .arrowContainer {
     display: flex;
     justify-content: center;
@@ -37,6 +37,7 @@
     border-radius: 2em;
     font-size: 65%;
     right: 4em;
+    top: -15em;
   }
   .backwardArrow {
     top: -14em;
@@ -44,16 +45,39 @@
     border-radius: 2em;
     font-size: 65%;
     left: 4em;
+    top: -15em;
+  }
+}
+@media screen and (min-width: 281px) and (max-width: 320px) {
+  .arrowContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .forwardArrow {
+    top: -14em;
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    right: 2em;
+    top: -15em;
+  }
+  .backwardArrow {
+    top: -14em;
+    background: white;
+    border-radius: 2em;
+    font-size: 65%;
+    left: 2em;
+    top: -15em;
   }
 }
 @media screen and (max-width: 414px) and (min-width: 321px) {
   .forwardArrow {
-    top: -14em;
+    top: -15em;
     background: white;
     margin-right: 0;
   }
   .backwardArrow {
-    top: -14em;
+    top: -15em;
     background: white;
     border-radius: 2em;
     font-size: 65%;
@@ -65,13 +89,15 @@
     background: white;
     border-radius: 2em;
     font-size: 65%;
-    right: 3em;
+    right: 1em;
+    top: -15em;
   }
   .backwardArrow {
     top: -14em;
     background: white;
     border-radius: 2em;
     font-size: 65%;
-    left: 3em;
+    left: 1em;
+    top: -15em;
   }
 }

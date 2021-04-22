@@ -1,44 +1,40 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import fallbackImg from "../media/placeholder.png";
+import { CityPageContext } from "../context/pages/cityPage";
+import {
+  photoBackward,
+  photoForward,
+  addDefaultSrc,
+} from "../utils/pagination";
 import "./storeMedia.scss";
 
 export interface StoreMediaProps {
   photos: Array<string>;
+  id: string;
 }
 export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   StoreMediaProps
 ) => {
-  const { photos } = StoreMediaProps;
-  const [totalPhotos] = useState<number>(photos.length - 1);
-  const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const [imgUrl] = useState<string>(fallbackImg);
+  const {
+    setModalOpen,
+    setSelectedStore,
+    storeIdToIndexMap,
+    stores,
+  } = useContext(CityPageContext);
+  const { photos, id } = StoreMediaProps;
+  const [imgUrl] = React.useState<string>(addDefaultSrc());
+  const totalPhotos = photos.length - 1;
+  const [photoIndex, setPhotoIndex] = React.useState<number>(0);
 
-  function addDefaultSrc() {
-    return fallbackImg;
+  function handleImgClick() {
+    setModalOpen(true);
+    setSelectedStore(stores[storeIdToIndexMap[id]]);
   }
-  //moves forward 1 photo
-  const photoForward = () => {
-    if (photoIndex < totalPhotos) {
-      setPhotoIndex(photoIndex + 1);
-    } else {
-      //otherwise rotate to beginning of photos
-      setPhotoIndex(0);
-    }
-  };
-  //moves backwards 1 photo
-  const photoBackward = () => {
-    if (photoIndex > 0) {
-      setPhotoIndex(photoIndex - 1);
-    } else {
-      //otherwise go to the end of the photos
-      setPhotoIndex(totalPhotos);
-    }
-  };
+
   return (
     <div className="card-content">
       <div className="">
-        <div className="">
+        <div onClick={handleImgClick}>
           <LazyLoadImage
             data-testid="lazyLoadImage"
             className="plantStorePhoto"
@@ -54,7 +50,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           data-testid="imageBackward"
           className="pagination-previous backwardArrow"
           onClick={() => {
-            photoBackward();
+            photoBackward(photoIndex, totalPhotos, setPhotoIndex);
           }}
         >
           {"<"}
@@ -63,7 +59,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
           data-testid="imageForward"
           className="pagination-next forwardArrow"
           onClick={() => {
-            photoForward();
+            photoForward(photoIndex, totalPhotos, setPhotoIndex);
           }}
         >
           {">"}
