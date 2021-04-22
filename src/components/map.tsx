@@ -1,12 +1,11 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
+  useMapEvents,
   Marker,
   Popup,
-  useMapEvents,
 } from "react-leaflet";
-import { setNewStore } from "../utils/selectedStore";
 import "./map.scss";
 
 export interface MapDetailsProps {
@@ -15,8 +14,15 @@ export interface MapDetailsProps {
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { stores } = MapDetailsProps;
   const { lat, lng } = stores[0];
-  const { id } = stores;
-  const [selectedStore, setSelectedStore] = useState<string>("");
+  const [storeId, setStoreId] = useState<string>(stores[0].id);
+  const [count, setCount] = useState(0);
+
+  const idDetails = (id: string) => {
+    setStoreId(id);
+  };
+  useEffect(() => {
+    console.log(`Map new selected store is: ${storeId}`);
+  }, [storeId]);
 
   return (
     <div data-testid="mapContainer">
@@ -35,7 +41,8 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
             position={[store.lat, store.lng]}
             eventHandlers={{
               click: () => {
-                setNewStore(store.id, setSelectedStore);
+                idDetails(store.id);
+                setCount(count + 1);
               },
             }}
           >

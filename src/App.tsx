@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
+import classNames from "classnames";
 import { Store } from "./database/stores";
+import { MediaModal } from "./components/mediaModal";
 import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
 import { StoreDetails } from "./components/storeDetails";
@@ -13,10 +15,8 @@ function App() {
     CityPageContext
   );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedStore, setSelectedStore] = useState<string>(stores[0].id);
-  useEffect(() => {
-    console.log(`new selected store is: ${selectedStore}`);
-  }, [selectedStore]);
+  const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+  const [storeId, setStoreId] = useState<string>(stores[0].id);
 
   return (
     <CityPageContext.Provider
@@ -29,27 +29,28 @@ function App() {
         setModalOpen,
         stores,
         storeIdToIndexMap,
+        storeId,
+        setStoreId,
       }}
     >
       <div className="App">
-        <div>
-          <div className="navContainer">
-            <TopNav city={city} />
+        {isModalOpen ? <MediaModal photos={selectedStore.photos} /> : undefined}
+        <div className="navContainer">
+          <TopNav city={city} />
+        </div>
+        <div className="wrapper">
+          <div className="mapOutterContainer" style={{ width: "50vw" }}>
+            <Map stores={stores} />
           </div>
-          <div className="wrapper">
-            <div className="mapOutterContainer" style={{ width: "50vw" }}>
-              <Map stores={stores} />
-            </div>
-            <div className="storesContainer">
-              {stores.map((store) => (
+          <div className="storesContainer">
+            {stores.map((store) => (
+              <div className="storeContainer">
                 <LazyLoadComponent>
-                  <div>
-                    <StoreDetails store={store} key={store.id} />
-                    <StoreMedia id={store.id} photos={store.photos} />
-                  </div>
+                  <StoreDetails store={store} id={store.id} />
+                  <StoreMedia id={store.id} photos={store.photos} />
                 </LazyLoadComponent>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

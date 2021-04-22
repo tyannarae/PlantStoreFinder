@@ -1,0 +1,87 @@
+.container {
+  height: 100vh;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exitAndImgContainer {
+  object-fit: cover;
+  margin-bottom: auto;
+  margin-top: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.exitButton {
+  margin: 0.1em;
+  position: absolute;
+  right: 0;
+}
+.plantModalPhoto {
+  width: 75vw;
+  height: 85vh;
+  object-fit: cover;
+  margin-bottom: auto;
+  margin-top: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modalArrows {
+  top: 20%;
+}
+
+.forwardArrowModal {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+}
+.backwardArrowModal {
+  position: absolute;
+  top: 50%;
+  right: 90%;
+}
+@media screen and (max-width: 410px) {
+  .plantModalPhoto {
+    width: auto;
+    height: auto;
+  }
+  .forwardArrowModal {
+    left: 87%;
+  }
+  .backwardArrowModal {
+    right: 87%;
+  }
+  .button {
+    padding: 1em;
+    height: 1em;
+    width: 1em;
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 411px) {
+  .plantModalPhoto {
+    width: auto;
+    height: auto;
+  }
+  .forwardArrowModal {
+    left: 87%;
+  }
+  .backwardArrowModal {
+    right: 87%;
+  }
+  .button {
+    height: 2em;
+    width: 2em;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .plantModalPhoto {
+    width: auto;
+    height: auto;
+  }
+}

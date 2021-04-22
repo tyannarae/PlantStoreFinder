@@ -5,7 +5,7 @@ const stores = Stores[0].stores;
 
 
 interface StoreIndexMap {   //interface for the map of store indices and their id.
-   [key: string]: number //key will be store ID and value will be index
+   [id: string]: number //key will be store ID and value will be index
 }
 export const mapStoreIdsToIndex =(stores: Array<Store>) =>{
   let storeId: StoreIndexMap = {}; 
@@ -20,8 +20,10 @@ export const mapStoreIdsToIndex =(stores: Array<Store>) =>{
 export type CityPageContextType = {
   city: CityDetails;
   seletedCity: MapCoordinates;
-  selectedStore: string;
-  setSelectedStore: (chosenStore: string) => void;
+  storeId: string;
+  setStoreId: (chosenStore: string) => void;
+  selectedStore: Store;
+  setSelectedStore: (chosenStore: Store) => void;
   isModalOpen: boolean;
   setModalOpen: (isOpen: boolean) => void;
   stores: Array<Store>;
@@ -30,14 +32,17 @@ export type CityPageContextType = {
 
 export const CityPageContext = createContext<CityPageContextType>({
   city: Stores[0],
+  selectedStore: stores[0],
+  setSelectedStore: (chosenStore) =>
+  console.warn("no setSelectedStore context provider"),
   isModalOpen: false,     
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
   storeIdToIndexMap: mapStoreIdsToIndex(stores),
-  selectedStore: stores[0].id,
-  seletedCity: Stores[0].mapCoordinates,
-  setSelectedStore: (chosenStore) =>
+  storeId: stores[0].id,
+  setStoreId: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),
+  seletedCity: Stores[0].mapCoordinates,
 });
 
 export const useCityPageContext = createContext(CityPageContext);

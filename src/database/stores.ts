@@ -71,7 +71,7 @@ export const Stores: Array<CityDetails> = [
        ],
       },
       {
-        id: '3',
+        id: '22',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -86,7 +86,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '4',
+        id: 't9',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -101,7 +101,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '5',
+        id: 'red',
         city: "Austin",
         state: "Texas",
         lat: 30.234789,
@@ -116,7 +116,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '6',
+        id: '5yv',
         city: "Austin",
         state: "Texas",
         lat: 30.234570,
@@ -131,7 +131,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '7',
+        id: '2323',
         city: "Austin",
         state: "Texas",
         lat: 30.274770,
@@ -146,7 +146,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '8',
+        id: 'refh',
         city: "Austin",
         state: "Texas",
         lat: 30.894770,
@@ -161,7 +161,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '9',
+        id: 'goop',
         city: "Austin",
         state: "Texas",
         lat: 30.234770 ,
@@ -176,7 +176,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '10',
+        id: 'twe4',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -191,7 +191,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '11',
+        id: 'svrh',
         city: "Austin",
         state: "Texas",
         lat: 30.204770,
@@ -206,7 +206,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '12',
+        id: 'iukjyh',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -221,7 +221,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '13',
+        id: '643123e',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -236,7 +236,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '14',
+        id: 'dvft',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -251,7 +251,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '15',
+        id: '67ujhgd',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -266,7 +266,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '16',
+        id: 'meq',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -281,7 +281,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/ba45a66f1f6c4205bb84140f9a0b2a34/1/4SoifmQp45JMgBnHp7ed2/download-3.jpg", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d67265fd14e1494c84307a2973d0d8e7/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0041.jpg?dpr=2", "https://static.spacecrafted.com/d078d55d64e54701ae679f035f8e1ebf/i/d0d307d842c24b12a91fd6363e42b329/1/2GTQbgiNxerRr5gcT6hkjr8dsnb6NBTxXMi2obS?dpr=2/IMG_0294.jpg?dpr=2"],
       },
       {
-        id: '17',
+        id: 'esdp',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,
@@ -296,7 +296,7 @@ export const Stores: Array<CityDetails> = [
         photos: ["https://www.mollyonthemoveblog.com/wp-content/uploads/2016/05/east-austin-succulents.jpg", "https://www.atasteofkoko.com/wp-content/uploads/2017/04/East-Austin-Succulents-FB-Cover.jpg", "https://rootedinmoss.files.wordpress.com/2015/11/img_2245.jpg"],
       },
       {
-        id: '18',
+        id: 'tedet',
         city: "Austin",
         state: "Texas",
         lat: 30.234770,

@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useContext } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
-import { setNewStore } from "../utils/selectedStore";
 import fbLogo from "../media/fbLogo.png";
 import igLogo from "../media/igLogo.png";
 import "../components/storeDetails.scss";
 
 export interface StoreDetailsProps {
   store: Store;
+  id: string;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
@@ -22,16 +22,22 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-  const { setSelectedStore, storeIdToIndexMap, stores } = useContext(
-    CityPageContext
-  );
+  const {
+    setSelectedStore,
+    storeIdToIndexMap,
+    stores,
+    setStoreId,
+  } = useContext(CityPageContext);
+  const idDetails = (id: string) => {
+    setStoreId(id);
+  };
 
   return (
     <div
       key={id}
       className="card-content "
       onClick={(event) => {
-        setNewStore(id, setSelectedStore);
+        idDetails(id);
       }}
     >
       <div className="tile is-ancestor">
