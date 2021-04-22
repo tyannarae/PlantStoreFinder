@@ -56,7 +56,7 @@ export const MediaModal: FunctionComponent<MediaModalProps> = (
               data-testid="modalImg"
               className="plantModalPhoto"
               src={photos[photoIndex]}
-              alt={photos[photoIndex]}
+              alt={`plant store img`}
               onError={addDefaultSrc}
             />
           </div>
