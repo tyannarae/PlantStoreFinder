@@ -16,7 +16,7 @@
 .exitButton {
   margin: 0.1em;
   position: absolute;
-  right: 0;
+  right: 6em;
 }
 .plantModalPhoto {
   width: 75vw;
@@ -36,12 +36,12 @@
 .forwardArrowModal {
   position: absolute;
   top: 50%;
-  left: 90%;
+  left: 94%;
 }
 .backwardArrowModal {
   position: absolute;
   top: 50%;
-  right: 90%;
+  right: 94%;
 }
 @media screen and (max-width: 410px) {
   .plantModalPhoto {

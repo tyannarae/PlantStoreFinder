@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  useContext,
+} from "react";
 import {
   MapContainer,
   TileLayer,
@@ -6,29 +11,35 @@ import {
   Marker,
   Popup,
 } from "react-leaflet";
+import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export interface MapDetailsProps {
   stores: any;
 }
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const { stores } = MapDetailsProps;
-  const { lat, lng } = stores[0];
-  const [storeId, setStoreId] = useState<string>(stores[0].id);
-  const [count, setCount] = useState(0);
+  // const { stores } = MapDetailsProps;
+  const {
+    selectedStore,
+    setSelectedStore,
+    storeIdToIndexMap,
+    stores,
+    storeId,
+    setStoreId,
+  } = useContext(CityPageContext);
 
   const idDetails = (id: string) => {
     setStoreId(id);
   };
   useEffect(() => {
-    console.log(`Map new selected store is: ${storeId}`);
+    setSelectedStore(stores[storeIdToIndexMap[storeId]]);
   }, [storeId]);
 
   return (
     <div data-testid="mapContainer">
       <MapContainer
         id="mapid"
-        center={[Number(lat), Number(lng)]}
+        center={[Number(selectedStore.lat), Number(selectedStore.lng)]}
         zoom={13}
         scrollWheelZoom={false}
       >
@@ -42,7 +53,6 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
             eventHandlers={{
               click: () => {
                 idDetails(store.id);
-                setCount(count + 1);
               },
             }}
           >
