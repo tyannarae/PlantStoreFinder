@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { Store } from "./database/stores";

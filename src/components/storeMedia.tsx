@@ -3,6 +3,7 @@ import React, {
   useState,
   useContext,
   useEffect,
+  useRef,
 } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CityPageContext } from "../context/pages/cityPage";
@@ -12,7 +13,6 @@ import {
   addDefaultSrc,
 } from "../utils/pagination";
 import "./storeMedia.scss";
-
 export interface StoreMediaProps {
   photos: Array<string>;
   id: string;
@@ -23,6 +23,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   const {
     setModalOpen,
     setSelectedStore,
+    selectedStore,
     storeIdToIndexMap,
     stores,
   } = useContext(CityPageContext);
@@ -38,9 +39,9 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   }
 
   return (
-    <div className="card-content">
-      <div className="">
-        <div onClick={handleImgClick} ref={storeId}>
+    <div className="card-content" id={id}>
+      <div>
+        <div onClick={handleImgClick}>
           <LazyLoadImage
             data-testid="lazyLoadImage"
             className="plantStorePhoto"
