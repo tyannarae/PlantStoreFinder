@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useState,
-  useContext,
-  useEffect,
-  useRef,
-} from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CityPageContext } from "../context/pages/cityPage";
 import {
@@ -23,11 +17,9 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   const {
     setModalOpen,
     setSelectedStore,
-    selectedStore,
     storeIdToIndexMap,
     stores,
   } = useContext(CityPageContext);
-  const [storeId] = useState();
   const { photos, id } = StoreMediaProps;
   const [imgUrl] = React.useState<string>(addDefaultSrc());
   const totalPhotos = photos.length - 1;
@@ -39,7 +31,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
   }
 
   return (
-    <div className="card-content" id={id}>
+    <div className="card-content">
       <div>
         <div onClick={handleImgClick}>
           <LazyLoadImage
