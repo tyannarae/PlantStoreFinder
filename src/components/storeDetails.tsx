@@ -36,28 +36,10 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     storeId,
     setStoreId,
   } = useContext(CityPageContext);
+  const element = document.getElementById(storeId);
 
-  const prevScrollY = useRef(0);
-  const [inView, setInView] = useState(false);
-
-  const handleScroll = () => {
-    console.log("sdlhdsfh", window);
-  };
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
-
-  //     prevScrollY.current = currentScrollY;
-  //     console.log("blaaahß", currentScrollY);
-  //   };
-
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [inView]);
-
-  window.addEventListener("scroll", handleScroll);
   useEffect(() => {
-    const titleElement = document.getElementById(storeId);
-    titleElement?.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({ behavior: "smooth" });
   }, [storeId]);
 
   const idDetails = (id: string) => {

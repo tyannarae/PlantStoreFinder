@@ -30,13 +30,13 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const idDetails = (id: string) => {
     setStoreId(id);
   };
-  useEffect(() => {
-    setSelectedStore(stores[storeIdToIndexMap[storeId]]);
-  }, [storeId]);
+  // useEffect(() => {
+  //   setSelectedStore(stores[storeIdToIndexMap[storeId]]);
+  // }, [storeId]);
 
-  useEffect(() => {
-    console.log("lets update the pin location!");
-  }, [selectedStore]);
+  // useEffect(() => {
+  //   console.log("lets update the pin location!");
+  // }, [selectedStore]);
   return (
     <div data-testid="mapContainer">
       <MapContainer
