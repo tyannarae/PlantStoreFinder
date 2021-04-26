@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useContext, useEffect } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
@@ -22,6 +28,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
+
   const {
     setSelectedStore,
     storeIdToIndexMap,
@@ -30,10 +37,29 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     setStoreId,
   } = useContext(CityPageContext);
 
+  const prevScrollY = useRef(0);
+  const [inView, setInView] = useState(false);
+
+  const handleScroll = () => {
+    console.log("sdlhdsfh", window);
+  };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+
+  //     prevScrollY.current = currentScrollY;
+  //     console.log("blaaahß", currentScrollY);
+  //   };
+
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [inView]);
+
+  window.addEventListener("scroll", handleScroll);
   useEffect(() => {
     const titleElement = document.getElementById(storeId);
     titleElement?.scrollIntoView({ behavior: "smooth" });
   }, [storeId]);
+
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
     setStoreId(id);
