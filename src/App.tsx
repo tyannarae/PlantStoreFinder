@@ -19,21 +19,19 @@ function App() {
   const [storeId, setStoreId] = useState<string>(stores[0].id);
 
   const parentEl = document.getElementById("storesContainer");
-  const childEl = document.getElementById(`${selectedStore.id}`) as HTMLElement;
-  console.log(`el ${parentEl?.childElementCount}`);
 
   parentEl?.addEventListener("scroll", function (event) {
-    var position = childEl.getBoundingClientRect();
     // checking whether fully visible
-    if (position.top >= 0 && position.bottom <= window.innerHeight) {
-      console.log("Element is fully visible in screen");
-    }
-
-    // checking for partial visibility
-    if (position.top < window.innerHeight && position.bottom >= 0) {
-      console.log("Element is partially visible in screen");
+    for (const [key, value] of Object.entries(storeIdToIndexMap)) {
+      const childEl = document.getElementById(`${key}`) as HTMLElement;
+      let position = childEl.getBoundingClientRect();
+      if (position.top >= 0 && position.bottom <= window.innerHeight) {
+        let val = Number(value);
+        return setSelectedStore(stores[val]);
+      }
     }
   });
+
   return (
     <CityPageContext.Provider
       value={{
