@@ -26,21 +26,22 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
     setSelectedStore,
     storeIdToIndexMap,
     stores,
-    storeId,
     setStoreId,
   } = useContext(CityPageContext);
-
+  const { setLat, setLng, lat, lng } = MapDetailsProps;
   const idDetails = (id: string) => {
     setStoreId(id);
   };
   useEffect(() => {
-    console.log("lets update the pin location!");
+    setLat(selectedStore.lat);
+    setLng(selectedStore.lng);
   }, [selectedStore]);
+  console.log(`lat lng ${lat}, ${lng}`);
   return (
     <div data-testid="mapContainer">
       <MapContainer
         id="mapid"
-        center={[Number(selectedStore.lat), Number(selectedStore.lng)]}
+        center={[lat, lng]}
         zoom={13}
         scrollWheelZoom={false}
       >
