@@ -15,7 +15,10 @@ import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export interface MapDetailsProps {
-  stores: any;
+  lat: number;
+  lng: number;
+  setLat: Function;
+  setLng: Function;
 }
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const {
@@ -30,10 +33,6 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const idDetails = (id: string) => {
     setStoreId(id);
   };
-  // useEffect(() => {
-  //   setSelectedStore(stores[storeIdToIndexMap[storeId]]);
-  // }, [storeId]);
-
   useEffect(() => {
     console.log("lets update the pin location!");
   }, [selectedStore]);

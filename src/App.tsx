@@ -17,6 +17,8 @@ function App() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [storeId, setStoreId] = useState<string>(stores[0].id);
+  const [lat, setLat] = useState(stores[0].lat);
+  const [lng, setLng] = useState(stores[0].lng);
 
   const parentEl = document.getElementById("storesContainer");
 
@@ -60,7 +62,7 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map stores={stores} />
+            <Map lat={lat} lng={lng} setLat={setLat} setLng={setLng} />
           </div>
           <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
