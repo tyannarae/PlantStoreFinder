@@ -19,10 +19,9 @@ function App() {
   const [storeId, setStoreId] = useState<string>(stores[0].id);
   const [lat, setLat] = useState(stores[0].lat);
   const [lng, setLng] = useState(stores[0].lng);
-
   const parentEl = document.getElementById("storesContainer");
 
-  parentEl?.addEventListener("scroll", function (event) {
+  const currentlyViewing = () => {
     // checking whether fully visible
     for (const [key, value] of Object.entries(storeIdToIndexMap)) {
       const childEl = document.getElementById(`${key}`) as HTMLElement;
@@ -32,6 +31,9 @@ function App() {
         return setSelectedStore(stores[val]);
       }
     }
+  };
+  useEffect(() => {
+    parentEl?.addEventListener("scroll", currentlyViewing);
   });
 
   return (
