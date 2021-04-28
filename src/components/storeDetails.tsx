@@ -27,18 +27,17 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     setSelectedStore,
     storeIdToIndexMap,
     stores,
-    storeId,
-    setStoreId,
+    selectedStore,
   } = useContext(CityPageContext);
-  const element = document.getElementById(storeId);
+  console.log(`selectedStore.id) ${selectedStore.id}`);
+  const element = document.getElementById(selectedStore.id);
 
   useEffect(() => {
     element?.scrollIntoView({ behavior: "smooth" });
-  }, [storeId, element]);
+  }, [element]);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
-    setStoreId(id);
   };
   return (
     <div

@@ -8,13 +8,14 @@ export interface MapDetailsProps {
   lng: number;
 }
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const { stores, setStoreId } = useContext(CityPageContext);
+  const { stores, setSelectedStore, storeIdToIndexMap } = useContext(
+    CityPageContext
+  );
   const { lat, lng } = MapDetailsProps;
   const setId = (id: string) => {
-    setStoreId(id);
+    setSelectedStore(stores[storeIdToIndexMap[id]]);
   };
   //log and make sure lat lng is actually updating.
-  console.log(lat, lng);
 
   return (
     <div data-testid="mapContainer">
