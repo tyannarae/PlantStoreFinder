@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import React, { FunctionComponent, useContext, useEffect } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
@@ -40,7 +34,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
 
   useEffect(() => {
     element?.scrollIntoView({ behavior: "smooth" });
-  }, [storeId]);
+  }, [storeId, element]);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);

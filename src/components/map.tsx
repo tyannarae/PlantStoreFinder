@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useContext } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
@@ -6,20 +6,16 @@ import "./map.scss";
 export interface MapDetailsProps {
   lat: number;
   lng: number;
-  setLat: Function;
-  setLng: Function;
 }
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const { selectedStore, stores, setStoreId } = useContext(CityPageContext);
-  const { setLat, setLng, lat, lng } = MapDetailsProps;
+  const { stores, setStoreId } = useContext(CityPageContext);
+  const { lat, lng } = MapDetailsProps;
   const setId = (id: string) => {
     setStoreId(id);
   };
-  useEffect(() => {
-    setLat(selectedStore.lat);
-    setLng(selectedStore.lng);
-  }, [selectedStore, setLat, setLng]);
-  console.log(`lat lng ${lat}, ${lng}`);
+  //log and make sure lat lng is actually updating.
+  console.log(lat, lng);
+
   return (
     <div data-testid="mapContainer">
       <MapContainer

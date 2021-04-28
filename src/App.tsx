@@ -11,27 +11,30 @@ import TopNav from "./components/topNav";
 import "./App.scss";
 
 function App() {
+  const parentEl = document.getElementById("storesContainer");
   const { storeIdToIndexMap, stores, seletedCity, city } = useContext(
     CityPageContext
   );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [storeId, setStoreId] = useState<string>(stores[0].id);
-  const [lat, setLat] = useState(stores[0].lat);
-  const [lng, setLng] = useState(stores[0].lng);
-  const parentEl = document.getElementById("storesContainer");
+  let lat = selectedStore.lat;
+  let lng = selectedStore.lng;
 
+  // checking whether store being scrolled on is fully in viewport
   const currentlyViewing = () => {
-    // checking whether fully visible
     for (const [key, value] of Object.entries(storeIdToIndexMap)) {
       const childEl = document.getElementById(`${key}`) as HTMLElement;
       let position = childEl.getBoundingClientRect();
+      //if store is in viewport update selected store
       if (position.top >= 0 && position.bottom <= window.innerHeight) {
         let val = Number(value);
-        return setSelectedStore(stores[val]);
+        setSelectedStore(stores[val]);
+        return;
       }
     }
   };
+  //listen when user scrolls through list of stores
   useEffect(() => {
     parentEl?.addEventListener("scroll", currentlyViewing);
   });
@@ -64,7 +67,7 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map lat={lat} lng={lng} setLat={setLat} setLng={setLng} />
+            <Map lat={lat} lng={lng} />
           </div>
           <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
