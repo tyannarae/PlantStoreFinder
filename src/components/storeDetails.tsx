@@ -1,4 +1,10 @@
-import React, { FunctionComponent, useContext, useEffect } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useRef,
+  createRef,
+} from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
@@ -8,10 +14,12 @@ import "../components/storeDetails.scss";
 export interface StoreDetailsProps {
   store: Store;
   id: string;
+  ref: HTMLDivElement;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
 ) => {
+  const { ref } = StoreDetailsProps;
   const {
     id,
     bussinessName,
@@ -22,23 +30,17 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-
   const {
     setSelectedStore,
     storeIdToIndexMap,
     stores,
     selectedStore,
   } = useContext(CityPageContext);
-  console.log(`selectedStore.id) ${selectedStore.id}`);
-  const element = document.getElementById(selectedStore.id);
-
-  useEffect(() => {
-    element?.scrollIntoView({ behavior: "smooth" });
-  }, [element]);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
   };
+
   return (
     <div
       key={id}
@@ -47,7 +49,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
         idDetails(id);
       }}
     >
-      <div className="tile is-ancestor" id={id}>
+      <div className="tile is-ancestor" ref={ref}>
         <div className="tile is-vertical">
           <div className="tile header">
             <div className="businessNameContainer tile is-parent is-vertical is-10">

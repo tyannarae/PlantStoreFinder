@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, createRef } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { Store } from "./database/stores";
@@ -37,7 +37,18 @@ function App() {
   // useEffect(() => {
   //   parentEl?.addEventListener("scroll", currentlyViewing);
   // });
-
+  const ref = createRef<HTMLDivElement>();
+  const focus = () => {
+    const node = ref.current;
+    if (node) {
+      node.focus();
+      node.scrollIntoView({ behavior: "smooth" });
+      console.log(node);
+    }
+  };
+  useEffect(() => {
+    focus();
+  }, [selectedStore]);
   return (
     <CityPageContext.Provider
       value={{
@@ -70,7 +81,7 @@ function App() {
             {stores.map((store) => (
               <div className="storeContainer">
                 <LazyLoadComponent>
-                  <StoreDetails store={store} id={store.id} />
+                  <StoreDetails store={store} id={store.id} ref={ref} />
                   <StoreMedia id={store.id} photos={store.photos} />
                 </LazyLoadComponent>
               </div>
