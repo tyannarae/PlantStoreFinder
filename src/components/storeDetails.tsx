@@ -2,7 +2,6 @@ import React, {
   FunctionComponent,
   useContext,
   useEffect,
-  useRef,
   createRef,
 } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
@@ -14,7 +13,7 @@ import "../components/storeDetails.scss";
 export interface StoreDetailsProps {
   store: Store;
   id: string;
-  //focus: Function;
+  // onScroll: Function;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
@@ -29,7 +28,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-  // const { focus } = StoreDetailsProps;
+  // const { onScroll } = StoreDetailsProps;
   const {
     setSelectedStore,
     storeIdToIndexMap,
@@ -47,7 +46,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     if (ref.current && selectedStore.id === id) {
       focus(ref.current);
     }
-  }, [selectedStore]);
+  }, [selectedStore.id, id, ref]);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
@@ -55,8 +54,9 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
 
   return (
     <div
-      key={id}
       ref={ref}
+      // onScroll={onScroll}
+      key={id}
       className="card-content "
       onClick={(event) => {
         idDetails(id);

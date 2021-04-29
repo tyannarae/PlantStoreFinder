@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, createRef } from "react";
+import React, { useState, useContext, createRef } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { Store } from "./database/stores";
@@ -19,7 +19,22 @@ function App() {
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   let lat = selectedStore.lat;
   let lng = selectedStore.lng;
+  let ref = createRef<HTMLDivElement>();
 
+  // const handleScroll = (e: any) => {
+  //   const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
+  //   const scrollTop = this.myRef.current.scrollTop;
+  //   console.log(
+  //     `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
+  //   );
+  //   this.setState({
+  //     scrollTop: scrollTop,
+  //   });
+  //   // let element = e.target;
+  //   // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+  //   //   console.log(`element is in view! ${element}`);
+  //   // }
+  // };
   // // checking whether store being scrolled on is fully in viewport
   // const currentlyViewing = () => {
   //   for (const [key, value] of Object.entries(storeIdToIndexMap)) {
@@ -37,6 +52,23 @@ function App() {
   // useEffect(() => {
   //   parentEl?.addEventListener("scroll", currentlyViewing);
   // });
+
+  const onScroll = () => {
+    console.log(`scrolling`);
+    const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
+    const scrollTop = ref.current?.scrollTop;
+    console.log(
+      `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
+    );
+
+    // this.setState({
+    //   scrollTop: scrollTop,
+    // });
+    // let element = e.target;
+    // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    //   console.log(`element is in view! ${element}`);
+    // }
+  };
 
   return (
     <CityPageContext.Provider
@@ -66,14 +98,19 @@ function App() {
           >
             <Map lat={lat} lng={lng} />
           </div>
-          <div className="storesContainer" id="storesContainer">
+          <div
+            className="storesContainer"
+            id="storesContainer"
+            ref={ref}
+            onScroll={onScroll}
+          >
             {stores.map((store) => (
               <div className="storeContainer">
                 <LazyLoadComponent>
                   <StoreDetails
                     store={store}
                     id={store.id}
-                    // focus={focus}
+                    // onScroll={handleScroll}
                   />
                   <StoreMedia id={store.id} photos={store.photos} />
                 </LazyLoadComponent>

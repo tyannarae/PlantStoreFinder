@@ -12,7 +12,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
     CityPageContext
   );
   const { lat, lng } = MapDetailsProps;
-  const setId = (id: string) => {
+  const setNewStore = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
   };
   //log and make sure lat lng is actually updating.
@@ -34,7 +34,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
             position={[store.lat, store.lng]}
             eventHandlers={{
               click: () => {
-                setId(store.id);
+                setNewStore(store.id);
               },
             }}
           >
