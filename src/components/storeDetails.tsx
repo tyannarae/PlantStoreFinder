@@ -14,12 +14,11 @@ import "../components/storeDetails.scss";
 export interface StoreDetailsProps {
   store: Store;
   id: string;
-  ref: HTMLDivElement;
+  //focus: Function;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
 ) => {
-  const { ref } = StoreDetailsProps;
   const {
     id,
     bussinessName,
@@ -30,12 +29,25 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
+  // const { focus } = StoreDetailsProps;
   const {
     setSelectedStore,
     storeIdToIndexMap,
     stores,
     selectedStore,
   } = useContext(CityPageContext);
+  let ref = createRef<HTMLDivElement>();
+  const focus = (ref: HTMLDivElement) => {
+    let node = ref;
+    node.focus();
+    node.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (ref.current && selectedStore.id === id) {
+      focus(ref.current);
+    }
+  }, [selectedStore]);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
@@ -44,12 +56,13 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   return (
     <div
       key={id}
+      ref={ref}
       className="card-content "
       onClick={(event) => {
         idDetails(id);
       }}
     >
-      <div className="tile is-ancestor" ref={ref}>
+      <div className="tile is-ancestor">
         <div className="tile is-vertical">
           <div className="tile header">
             <div className="businessNameContainer tile is-parent is-vertical is-10">

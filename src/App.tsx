@@ -37,18 +37,7 @@ function App() {
   // useEffect(() => {
   //   parentEl?.addEventListener("scroll", currentlyViewing);
   // });
-  const ref = createRef<HTMLDivElement>();
-  const focus = () => {
-    const node = ref.current;
-    if (node) {
-      node.focus();
-      node.scrollIntoView({ behavior: "smooth" });
-      console.log(node);
-    }
-  };
-  useEffect(() => {
-    focus();
-  }, [selectedStore]);
+
   return (
     <CityPageContext.Provider
       value={{
@@ -81,7 +70,11 @@ function App() {
             {stores.map((store) => (
               <div className="storeContainer">
                 <LazyLoadComponent>
-                  <StoreDetails store={store} id={store.id} ref={ref} />
+                  <StoreDetails
+                    store={store}
+                    id={store.id}
+                    // focus={focus}
+                  />
                   <StoreMedia id={store.id} photos={store.photos} />
                 </LazyLoadComponent>
               </div>
