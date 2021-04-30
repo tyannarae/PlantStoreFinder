@@ -1,4 +1,4 @@
-import React, { useState, useContext, createRef } from "react";
+import React, { useState, useContext, createRef, useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { Store } from "./database/stores";
@@ -20,21 +20,8 @@ function App() {
   let lat = selectedStore.lat;
   let lng = selectedStore.lng;
   let ref = createRef<HTMLDivElement>();
+  let number = 0;
 
-  // const handleScroll = (e: any) => {
-  //   const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-  //   const scrollTop = this.myRef.current.scrollTop;
-  //   console.log(
-  //     `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
-  //   );
-  //   this.setState({
-  //     scrollTop: scrollTop,
-  //   });
-  //   // let element = e.target;
-  //   // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-  //   //   console.log(`element is in view! ${element}`);
-  //   // }
-  // };
   // // checking whether store being scrolled on is fully in viewport
   // const currentlyViewing = () => {
   //   for (const [key, value] of Object.entries(storeIdToIndexMap)) {
@@ -53,21 +40,19 @@ function App() {
   //   parentEl?.addEventListener("scroll", currentlyViewing);
   // });
 
-  const onScroll = () => {
-    console.log(`scrolling`);
-    const scrollY = window.scrollY; //Don't get confused by what's scrolling - It's not the window
-    const scrollTop = ref.current?.scrollTop;
-    console.log(
-      `onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`
-    );
-
-    // this.setState({
-    //   scrollTop: scrollTop,
-    // });
-    // let element = e.target;
-    // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-    //   console.log(`element is in view! ${element}`);
-    // }
+  const onScroll = (e: any) => {
+    let parent = e.target;
+    let children = parent.children;
+    let childEl = children[0];
+    let position = childEl.getBoundingClientRect();
+    //if childEl is scrolled out of view, update number
+    if (parent.scrollHeight - parent.scrollTop === parent.clientHeight) {
+      if (childEl.scrollHeight - childEl.scrollTop === childEl.clientHeight) {
+        number = number + 1;
+        childEl = children[number];
+        console.log(`new child ${number}`);
+      }
+    }
   };
 
   return (
@@ -107,11 +92,7 @@ function App() {
             {stores.map((store) => (
               <div className="storeContainer">
                 <LazyLoadComponent>
-                  <StoreDetails
-                    store={store}
-                    id={store.id}
-                    // onScroll={handleScroll}
-                  />
+                  <StoreDetails store={store} id={store.id} />
                   <StoreMedia id={store.id} photos={store.photos} />
                 </LazyLoadComponent>
               </div>

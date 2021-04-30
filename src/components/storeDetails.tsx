@@ -13,7 +13,6 @@ import "../components/storeDetails.scss";
 export interface StoreDetailsProps {
   store: Store;
   id: string;
-  // onScroll: Function;
 }
 export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   StoreDetailsProps
@@ -28,7 +27,6 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-  // const { onScroll } = StoreDetailsProps;
   const {
     setSelectedStore,
     storeIdToIndexMap,
@@ -55,7 +53,6 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
   return (
     <div
       ref={ref}
-      // onScroll={onScroll}
       key={id}
       className="card-content "
       onClick={(event) => {
