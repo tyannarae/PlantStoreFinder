@@ -19,39 +19,23 @@ function App() {
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   let lat = selectedStore.lat;
   let lng = selectedStore.lng;
-  let ref = createRef<HTMLDivElement>();
+  let parentRef = createRef<HTMLDivElement>();
   let number = 0;
-
-  // // checking whether store being scrolled on is fully in viewport
-  // const currentlyViewing = () => {
-  //   for (const [key, value] of Object.entries(storeIdToIndexMap)) {
-  //     const childEl = document.getElementById(`${key}`) as HTMLElement;
-  //     let position = childEl.getBoundingClientRect();
-  //     //if store is in viewport update selected store
-  //     if (position.top >= 0 && position.bottom <= window.innerHeight) {
-  //       let val = Number(value);
-  //       setSelectedStore(stores[val]);
-  //       return;
-  //     }
-  //   }
-  // };
-  // //listen when user scrolls through list of stores
-  // useEffect(() => {
-  //   parentEl?.addEventListener("scroll", currentlyViewing);
-  // });
 
   const onScroll = (e: any) => {
     let parent = e.target;
-    let children = parent.children;
-    let childEl = children[0];
+    let childEl = parent.childNodes[number];
+    // console.log(childEl);
+    // console.log(parent);
+    // console.log(e.target.scrollTop);
     let position = childEl.getBoundingClientRect();
+    // console.log(position.top);
     //if childEl is scrolled out of view, update number
-    if (parent.scrollHeight - parent.scrollTop === parent.clientHeight) {
-      if (childEl.scrollHeight - childEl.scrollTop === childEl.clientHeight) {
-        number = number + 1;
-        childEl = children[number];
-        console.log(`new child ${number}`);
-      }
+    if (position.top >= 0 && position.bottom <= window.innerHeight) {
+      number++;
+      childEl = parent.childNodes[number];
+      setSelectedStore(stores[number]);
+      console.log(`new child ${childEl}${number} store id:${selectedStore.id}`);
     }
   };
 
@@ -86,7 +70,7 @@ function App() {
           <div
             className="storesContainer"
             id="storesContainer"
-            ref={ref}
+            ref={parentRef}
             onScroll={onScroll}
           >
             {stores.map((store) => (

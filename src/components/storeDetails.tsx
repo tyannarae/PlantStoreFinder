@@ -34,21 +34,19 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     selectedStore,
   } = useContext(CityPageContext);
   let ref = createRef<HTMLDivElement>();
+
+  //scrolls selected store into focus
   const focus = (ref: HTMLDivElement) => {
     let node = ref;
     node.focus();
     node.scrollIntoView({ behavior: "smooth" });
   };
-
+  //store that is currently on the screen matches selected store
   useEffect(() => {
     if (ref.current && selectedStore.id === id) {
       focus(ref.current);
     }
   }, [selectedStore.id, id, ref]);
-
-  const idDetails = (id: string) => {
-    setSelectedStore(stores[storeIdToIndexMap[id]]);
-  };
 
   return (
     <div
@@ -56,7 +54,7 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
       key={id}
       className="card-content "
       onClick={(event) => {
-        idDetails(id);
+        setSelectedStore(stores[storeIdToIndexMap[id]]);
       }}
     >
       <div className="tile is-ancestor">
