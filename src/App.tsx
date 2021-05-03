@@ -20,22 +20,24 @@ function App() {
   let lat = selectedStore.lat;
   let lng = selectedStore.lng;
   let parentRef = createRef<HTMLDivElement>();
-  let number = 0;
+  const onScroll = (e: React.UIEvent<HTMLElement>): void => {
+    e.stopPropagation(); // Handy if you want to prevent event bubbling to scrollable parent
+    // console.log({
+    //   target: e.target, // Note 1* scrollTop is undefined on e.target
+    //   totalChildren: e.currentTarget.children.length,
+    //   heightOfChild: e.currentTarget.children[0].clientHeight,
+    //   containerHeight: e.currentTarget.scrollHeight,
+    //   exactChild: e.currentTarget.children[number],
+    // });
+    for (const [key, value] of Object.entries(storeIdToIndexMap)) {
+      const childEl = e.currentTarget.children[value] as HTMLElement;
 
-  const onScroll = (e: any) => {
-    let parent = e.target;
-    let childEl = parent.childNodes[number];
-    // console.log(childEl);
-    // console.log(parent);
-    // console.log(e.target.scrollTop);
-    let position = childEl.getBoundingClientRect();
-    // console.log(position.top);
-    //if childEl is scrolled out of view, update number
-    if (position.top >= 0 && position.bottom <= window.innerHeight) {
-      number++;
-      childEl = parent.childNodes[number];
-      setSelectedStore(stores[number]);
-      console.log(`new child ${childEl}${number} store id:${selectedStore.id}`);
+      let position = childEl.getBoundingClientRect();
+      if (position.top >= 0 && position.bottom <= window.innerHeight) {
+        let val = Number(value);
+        console.log(`store: ${stores[value].id}`);
+        return setSelectedStore(stores[value]);
+      }
     }
   };
 
