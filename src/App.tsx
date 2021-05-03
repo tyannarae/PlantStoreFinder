@@ -33,6 +33,11 @@ function App() {
       }
     }
   });
+  const element = document.getElementById(storeId);
+
+  useEffect(() => {
+    element?.scrollIntoView({ behavior: "smooth" });
+  }, [storeId]);
 
   return (
     <CityPageContext.Provider
