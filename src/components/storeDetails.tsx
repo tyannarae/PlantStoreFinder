@@ -2,7 +2,8 @@ import React, {
   FunctionComponent,
   useContext,
   useEffect,
-  createRef,
+  useState,
+  useRef,
 } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
@@ -27,37 +28,33 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
+
   const {
     setSelectedStore,
     storeIdToIndexMap,
     stores,
-    selectedStore,
+    storeId,
+    setStoreId,
   } = useContext(CityPageContext);
-  let ref = createRef<HTMLDivElement>();
+  const element = document.getElementById(storeId);
 
-  //scrolls selected store into focus
-  const focus = (ref: HTMLDivElement) => {
-    let node = ref;
-    node.focus();
-    node.scrollIntoView({ behavior: "smooth" });
-  };
-  //store that is currently on the screen matches selected store
   useEffect(() => {
-    if (ref.current && selectedStore.id === id) {
-      focus(ref.current);
-    }
-  }, [selectedStore.id, id, ref]);
+    element?.scrollIntoView({ behavior: "smooth" });
+  }, [storeId]);
 
+  const idDetails = (id: string) => {
+    setSelectedStore(stores[storeIdToIndexMap[id]]);
+    setStoreId(id);
+  };
   return (
     <div
-      ref={ref}
       key={id}
       className="card-content "
       onClick={(event) => {
-        setSelectedStore(stores[storeIdToIndexMap[id]]);
+        idDetails(id);
       }}
     >
-      <div className="tile is-ancestor">
+      <div className="tile is-ancestor" id={id}>
         <div className="tile is-vertical">
           <div className="tile header">
             <div className="businessNameContainer tile is-parent is-vertical is-10">
