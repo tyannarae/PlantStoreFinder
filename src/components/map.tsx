@@ -1,50 +1,79 @@
 import React, {
-  FunctionComponent,
-  useState,
   useEffect,
   useContext,
+  useState,
+  FunctionComponent,
+  useCallback,
+  useRef,
+  createRef,
 } from "react";
 import {
   MapContainer,
   TileLayer,
-  useMapEvents,
   Marker,
   Popup,
+  useMapEvent,
+  useMap,
 } from "react-leaflet";
 import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export interface MapDetailsProps {
   lat: number;
-  lng: number;
   setLat: Function;
   setLng: Function;
+  lng: number;
 }
+
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const {
-    selectedStore,
-    setSelectedStore,
-    storeIdToIndexMap,
-    stores,
-    setStoreId,
-  } = useContext(CityPageContext);
-  const { setLat, setLng, lat, lng } = MapDetailsProps;
-  const idDetails = (id: string) => {
-    setStoreId(id);
-  };
+  const { lat, setLat, setLng, lng } = MapDetailsProps;
+  const { selectedStore, stores, setStoreId } = useContext(CityPageContext);
+  const [zoom] = useState(13);
+  const [isNewStore, setNewStore] = useState(false);
+
   useEffect(() => {
     setLat(selectedStore.lat);
     setLng(selectedStore.lng);
   }, [selectedStore]);
-  console.log(`lat lng ${lat}, ${lng}`);
+  const animateRef = useRef<HTMLDivElement>();
+  //
+  // console.log(`inside!!! ${e.target.current}`);
+  // function SetCenterView() {
+  //   console.log(`change view! ${lat} ${lng}`);
+  //   const map = useMapEvent("locationfound", (e) => {
+  //     console.log(`inside!!! ${lat} ${lng}`);
+  //     // map.setView([lat, lng], map.getZoom());
+  //   });
+  //   setNewStore(false);
+  //   return null;
+  // }
+  const idDetails = (id: string) => {
+    setStoreId(id);
+    // setNewStore(true);
+  };
+  // if (isNewStore) {
+  //   SetCenterView();
+  // }
+  function SetViewOnClick(animateRef: any) {
+    const map = useMapEvent("click", (e) => {
+      map.setView(e.latlng, map.getZoom(), {
+        animate: animateRef.current || false,
+      });
+    });
+
+    return null;
+  }
   return (
     <div data-testid="mapContainer">
       <MapContainer
         id="mapid"
         center={[lat, lng]}
-        zoom={13}
+        zoom={zoom}
         scrollWheelZoom={false}
       >
+        {/* <SetCenterView /> */}
+        <SetViewOnClick animateRef={animateRef} />
+
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

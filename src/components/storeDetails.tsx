@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { CityPageContext } from "../context/pages/cityPage";
 import { Store } from "../database/stores";
 import fbLogo from "../media/fbLogo.png";
@@ -33,7 +27,6 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     setSelectedStore,
     storeIdToIndexMap,
     stores,
-    storeId,
     setStoreId,
   } = useContext(CityPageContext);
 

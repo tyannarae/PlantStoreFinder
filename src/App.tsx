@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, createRef } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { Store } from "./database/stores";
@@ -17,11 +17,10 @@ function App() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [storeId, setStoreId] = useState<string>(stores[0].id);
-  const [lat, setLat] = useState(stores[0].lat);
-  const [lng, setLng] = useState(stores[0].lng);
+  const [lat, setLat] = useState(selectedStore.lat);
+  const [lng, setLng] = useState(selectedStore.lng);
 
   const parentEl = document.getElementById("storesContainer");
-
   parentEl?.addEventListener("scroll", function (event) {
     // checking whether fully visible
     for (const [key, value] of Object.entries(storeIdToIndexMap)) {
@@ -37,7 +36,7 @@ function App() {
 
   useEffect(() => {
     element?.scrollIntoView({ behavior: "smooth" });
-  }, [storeId]);
+  }, [element]);
 
   return (
     <CityPageContext.Provider
@@ -67,7 +66,7 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map lat={lat} lng={lng} setLat={setLat} setLng={setLng} />
+            <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} />
           </div>
           <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
