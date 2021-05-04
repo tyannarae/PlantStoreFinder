@@ -3,16 +3,8 @@ import React, {
   useContext,
   useState,
   FunctionComponent,
-  useRef,
 } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvent,
-  useMap,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
@@ -27,50 +19,20 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { lat, setLat, setLng, lng } = MapDetailsProps;
   const { selectedStore, stores, setStoreId } = useContext(CityPageContext);
   const [zoom] = useState(13);
-  const [isNewStore, setNewStore] = useState(false);
 
   useEffect(() => {
     setLat(selectedStore.lat);
     setLng(selectedStore.lng);
   }, [selectedStore, setLng, setLat]);
-  const animateRef = useRef<HTMLDivElement>();
-  //
-  // console.log(`inside!!! ${e.target.current}`);
-  // function SetCenterView() {
-  //   console.log(`change view! ${lat} ${lng}`);
-  //   const map = useMapEvent("locationfound", (e) => {
-  //     console.log(`inside!!! ${lat} ${lng}`);
-  //     // map.setView([lat, lng], map.getZoom());
-  //   });
-  //   setNewStore(false);
-  //   return null;
-  // }
+
   const idDetails = (id: string) => {
     setStoreId(id);
-    // setNewStore(true);
   };
-  // if (isNewStore) {
-  //   SetCenterView();
-  // }
-  // function SetViewOnClick(animateRef: any) {
-  //   const map = useMapEvent("click", (e) => {
-  //     map.setView([lat, lng], map.getZoom(), {
-  //       animate: false,
-  //     });
-  //   });
-
-  //   return null;
-  // }
 
   function SetViewOnClick() {
     console.log(`here`);
     const parentMap = useMap();
     parentMap.setView([lat, lng], parentMap.getZoom());
-    // const map = useMapEvent("update", (e) => {
-    //   console.log(`inside map`);
-    //   map.setView([lat, lng], map.getZoom());
-    //   map.flyTo([lat, lng], map.getZoom());
-    // });
 
     return null;
   }
