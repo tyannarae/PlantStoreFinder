@@ -3,9 +3,7 @@ import React, {
   useContext,
   useState,
   FunctionComponent,
-  useCallback,
   useRef,
-  createRef,
 } from "react";
 import {
   MapContainer,
@@ -34,7 +32,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   useEffect(() => {
     setLat(selectedStore.lat);
     setLng(selectedStore.lng);
-  }, [selectedStore]);
+  }, [selectedStore, setLng, setLat]);
   const animateRef = useRef<HTMLDivElement>();
   //
   // console.log(`inside!!! ${e.target.current}`);
@@ -54,15 +52,29 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   // if (isNewStore) {
   //   SetCenterView();
   // }
-  function SetViewOnClick(animateRef: any) {
-    const map = useMapEvent("click", (e) => {
-      map.setView(e.latlng, map.getZoom(), {
-        animate: animateRef.current || false,
-      });
-    });
+  // function SetViewOnClick(animateRef: any) {
+  //   const map = useMapEvent("click", (e) => {
+  //     map.setView([lat, lng], map.getZoom(), {
+  //       animate: false,
+  //     });
+  //   });
+
+  //   return null;
+  // }
+
+  function SetViewOnClick() {
+    console.log(`here`);
+    const parentMap = useMap();
+    parentMap.setView([lat, lng], parentMap.getZoom());
+    // const map = useMapEvent("update", (e) => {
+    //   console.log(`inside map`);
+    //   map.setView([lat, lng], map.getZoom());
+    //   map.flyTo([lat, lng], map.getZoom());
+    // });
 
     return null;
   }
+
   return (
     <div data-testid="mapContainer">
       <MapContainer
@@ -71,8 +83,8 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
         zoom={zoom}
         scrollWheelZoom={false}
       >
-        {/* <SetCenterView /> */}
-        <SetViewOnClick animateRef={animateRef} />
+        {/* <SetViewOnClick animateRef={animateRef} /> */}
+        <SetViewOnClick />
 
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
