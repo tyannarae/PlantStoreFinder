@@ -30,10 +30,8 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   };
 
   function SetViewOnClick() {
-    console.log(`here`);
     const parentMap = useMap();
     parentMap.setView([lat, lng], parentMap.getZoom());
-
     return null;
   }
 
