@@ -29,7 +29,8 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
     setStoreId(id);
   };
 
-  function SetViewOnClick() {
+  //this is required in order to update MapContainer center
+  function SetViewOnScroll() {
     const parentMap = useMap();
     parentMap.setView([lat, lng], parentMap.getZoom());
     return null;
@@ -43,8 +44,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
         zoom={zoom}
         scrollWheelZoom={false}
       >
-        {/* <SetViewOnClick animateRef={animateRef} /> */}
-        <SetViewOnClick />
+        <SetViewOnScroll />
 
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
