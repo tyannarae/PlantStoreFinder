@@ -27,12 +27,12 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     setSelectedStore,
     storeIdToIndexMap,
     stores,
-    setStoreId,
+    setScrolledStoreId,
   } = useContext(CityPageContext);
 
   const idDetails = (id: string) => {
     setSelectedStore(stores[storeIdToIndexMap[id]]);
-    setStoreId(id);
+    setScrolledStoreId(id);
   };
   return (
     <div

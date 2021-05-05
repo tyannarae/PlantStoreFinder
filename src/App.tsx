@@ -16,7 +16,7 @@ function App() {
   );
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
-  const [storeId, setStoreId] = useState<string>(stores[0].id);
+  const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
   const [lat, setLat] = useState(selectedStore.lat);
   const [lng, setLng] = useState(selectedStore.lng);
 
@@ -32,7 +32,7 @@ function App() {
       }
     }
   });
-  const element = document.getElementById(storeId);
+  const element = document.getElementById(scrolledStoreId);
 
   useEffect(() => {
     element?.scrollIntoView({ behavior: "smooth" });
@@ -49,8 +49,8 @@ function App() {
         setModalOpen,
         stores,
         storeIdToIndexMap,
-        storeId,
-        setStoreId,
+        scrolledStoreId,
+        setScrolledStoreId,
       }}
     >
       <div className="App">

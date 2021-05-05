@@ -21,8 +21,8 @@ export const mapStoreIdsToIndex =(stores: Array<Store>) =>{
 export type CityPageContextType = {
   city: CityDetails;
   seletedCity: MapCoordinates;
-  storeId: string;
-  setStoreId: (chosenStore: string) => void;
+  scrolledStoreId: string;
+  setScrolledStoreId: (chosenStore: string) => void;
   selectedStore: Store;
   setSelectedStore: (chosenStore: Store) => void;
   isModalOpen: boolean;
@@ -40,8 +40,8 @@ export const CityPageContext = createContext<CityPageContextType>({
   setModalOpen: (isOpen) => console.warn("modal no context provider"),
   stores: stores,
   storeIdToIndexMap: mapStoreIdsToIndex(stores),
-  storeId: stores[0].id,
-  setStoreId: (chosenStore) =>
+  scrolledStoreId: stores[0].id,
+  setScrolledStoreId: (chosenStore) =>
     console.warn("no setSelectedStore context provider"),
   seletedCity: Stores[0].mapCoordinates,
 });

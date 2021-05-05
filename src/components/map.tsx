@@ -17,7 +17,9 @@ export interface MapDetailsProps {
 
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { lat, setLat, setLng, lng } = MapDetailsProps;
-  const { selectedStore, stores, setStoreId } = useContext(CityPageContext);
+  const { selectedStore, stores, setScrolledStoreId } = useContext(
+    CityPageContext
+  );
   const [zoom] = useState(13);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   }, [selectedStore, setLng, setLat]);
 
   const idDetails = (id: string) => {
-    setStoreId(id);
+    setScrolledStoreId(id);
   };
 
   //this is required in order to update MapContainer center
