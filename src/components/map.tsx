@@ -5,23 +5,12 @@ import "./map.scss";
 
 export interface MapDetailsProps {
   center: [number, number];
-  setCenter: Function;
 }
 
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const { setCenter, center } = MapDetailsProps;
-  const { selectedStore, stores, setScrolledStoreId } = useContext(
-    CityPageContext
-  );
+  const { center } = MapDetailsProps;
+  const { stores, setScrolledStoreId } = useContext(CityPageContext);
   const zoom = 13;
-  console.log(center);
-  useEffect(() => {
-    setCenter([selectedStore.lat, selectedStore.lng]);
-  }, [selectedStore, setCenter]);
-
-  const idDetails = (id: string) => {
-    setScrolledStoreId(id);
-  };
 
   //this is required in order to update MapContainer center
   function SetViewOnScroll() {
@@ -49,7 +38,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
             position={[store.lat, store.lng]}
             eventHandlers={{
               click: () => {
-                idDetails(store.id);
+                setScrolledStoreId(store.id);
               },
             }}
           >

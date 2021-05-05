@@ -10,21 +10,16 @@ import TopNav from "./components/topNav";
 import "./App.scss";
 
 function App() {
-  const {
-    storeIdToIndexMap,
-    stores,
-    seletedCity,
-    city,
-    selectedStore,
-    setSelectedStore,
-  } = useContext(CityPageContext);
+  const { storeIdToIndexMap, stores, seletedCity, city } = useContext(
+    CityPageContext
+  );
+  const [selectedStore, setSelectedStore] = useState(stores[0]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
   const [center, setCenter] = useState<[number, number]>([
     selectedStore.lat,
     selectedStore.lng,
   ]);
-  console.log(`center ${center}${[selectedStore.lat, selectedStore.lng]}`);
 
   const parentEl = document.getElementById("storesContainer");
   parentEl?.addEventListener("scroll", function (event) {
@@ -72,7 +67,7 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map center={center} setCenter={setCenter} />
+            <Map center={[selectedStore.lat, selectedStore.lng]} />
           </div>
           <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
