@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, FunctionComponent } from "react";
+import React, { useContext, FunctionComponent } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";

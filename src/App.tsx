@@ -16,10 +16,6 @@ function App() {
   const [selectedStore, setSelectedStore] = useState(stores[0]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
-  const [center, setCenter] = useState<[number, number]>([
-    selectedStore.lat,
-    selectedStore.lng,
-  ]);
 
   const parentEl = document.getElementById("storesContainer");
   parentEl?.addEventListener("scroll", function (event) {
