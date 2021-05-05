@@ -17,8 +17,10 @@ function App() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
-  const [center, setCenter] = useState([selectedStore.lat, selectedStore.lng]);
-  // const [lng, setLng] = useState(selectedStore.lng);
+  const [center, setCenter] = useState<[number, number]>([
+    selectedStore.lat,
+    selectedStore.lng,
+  ]);
 
   const parentEl = document.getElementById("storesContainer");
   parentEl?.addEventListener("scroll", function (event) {
@@ -32,11 +34,11 @@ function App() {
       }
     }
   });
-  const element = document.getElementById(scrolledStoreId);
 
   useEffect(() => {
+    const element = document.getElementById(scrolledStoreId);
     element?.scrollIntoView({ behavior: "smooth" });
-  }, [element]);
+  }, [scrolledStoreId]);
 
   return (
     <CityPageContext.Provider
