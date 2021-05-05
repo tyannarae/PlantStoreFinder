@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
-import { Store } from "./database/stores";
 import { MediaModal } from "./components/mediaModal";
 import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
@@ -11,14 +10,21 @@ import TopNav from "./components/topNav";
 import "./App.scss";
 
 function App() {
-  const { storeIdToIndexMap, stores, seletedCity, city } = useContext(
-    CityPageContext
-  );
+  const {
+    storeIdToIndexMap,
+    stores,
+    seletedCity,
+    city,
+    selectedStore,
+    setSelectedStore,
+  } = useContext(CityPageContext);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
-  const [center, setCenter] = useState([selectedStore.lat, selectedStore.lng]);
-  // const [lng, setLng] = useState(selectedStore.lng);
+  const [center, setCenter] = useState<[number, number]>([
+    selectedStore.lat,
+    selectedStore.lng,
+  ]);
+  console.log(`center ${center}${[selectedStore.lat, selectedStore.lng]}`);
 
   const parentEl = document.getElementById("storesContainer");
   parentEl?.addEventListener("scroll", function (event) {
@@ -32,11 +38,11 @@ function App() {
       }
     }
   });
-  const element = document.getElementById(scrolledStoreId);
 
   useEffect(() => {
+    const element = document.getElementById(scrolledStoreId);
     element?.scrollIntoView({ behavior: "smooth" });
-  }, [element]);
+  }, [scrolledStoreId]);
 
   return (
     <CityPageContext.Provider

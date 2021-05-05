@@ -1,15 +1,10 @@
-import React, {
-  useEffect,
-  useContext,
-  useState,
-  FunctionComponent,
-} from "react";
+import React, { useEffect, useContext, FunctionComponent } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export interface MapDetailsProps {
-  center: any;
+  center: [number, number];
   setCenter: Function;
 }
 
@@ -18,10 +13,10 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   const { selectedStore, stores, setScrolledStoreId } = useContext(
     CityPageContext
   );
-  const [zoom] = useState(13);
-
+  const zoom = 13;
+  console.log(center);
   useEffect(() => {
-    setCenter(selectedStore.lat, selectedStore.lng);
+    setCenter([selectedStore.lat, selectedStore.lng]);
   }, [selectedStore, setCenter]);
 
   const idDetails = (id: string) => {
