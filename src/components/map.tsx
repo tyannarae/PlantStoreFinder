@@ -9,23 +9,20 @@ import { CityPageContext } from "../context/pages/cityPage";
 import "./map.scss";
 
 export interface MapDetailsProps {
-  lat: number;
-  setLat: Function;
-  setLng: Function;
-  lng: number;
+  center: any;
+  setCenter: Function;
 }
 
 export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
-  const { lat, setLat, setLng, lng } = MapDetailsProps;
+  const { setCenter, center } = MapDetailsProps;
   const { selectedStore, stores, setScrolledStoreId } = useContext(
     CityPageContext
   );
   const [zoom] = useState(13);
 
   useEffect(() => {
-    setLat(selectedStore.lat);
-    setLng(selectedStore.lng);
-  }, [selectedStore, setLng, setLat]);
+    setCenter(selectedStore.lat, selectedStore.lng);
+  }, [selectedStore, setCenter]);
 
   const idDetails = (id: string) => {
     setScrolledStoreId(id);
@@ -34,7 +31,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
   //this is required in order to update MapContainer center
   function SetViewOnScroll() {
     const parentMap = useMap();
-    parentMap.setView([lat, lng], parentMap.getZoom());
+    parentMap.setView(center, parentMap.getZoom());
     return null;
   }
 
@@ -42,7 +39,7 @@ export const Map: FunctionComponent<MapDetailsProps> = (MapDetailsProps) => {
     <div data-testid="mapContainer">
       <MapContainer
         id="mapid"
-        center={[lat, lng]}
+        center={center}
         zoom={zoom}
         scrollWheelZoom={false}
       >

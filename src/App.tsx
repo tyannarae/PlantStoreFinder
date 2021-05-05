@@ -17,8 +17,8 @@ function App() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
   const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
-  const [lat, setLat] = useState(selectedStore.lat);
-  const [lng, setLng] = useState(selectedStore.lng);
+  const [center, setCenter] = useState([selectedStore.lat, selectedStore.lng]);
+  // const [lng, setLng] = useState(selectedStore.lng);
 
   const parentEl = document.getElementById("storesContainer");
   parentEl?.addEventListener("scroll", function (event) {
@@ -28,7 +28,7 @@ function App() {
       let position = childEl.getBoundingClientRect();
       if (position.top >= 0 && position.bottom <= window.innerHeight) {
         let val = Number(value);
-        return setSelectedStore(stores[val]);
+        setSelectedStore(stores[val]);
       }
     }
   });
@@ -66,7 +66,7 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map lng={lng} setLng={setLng} lat={lat} setLat={setLat} />
+            <Map center={center} setCenter={setCenter} />
           </div>
           <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
