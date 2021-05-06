@@ -30,16 +30,13 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     setScrolledStoreId,
   } = useContext(CityPageContext);
 
-  const idDetails = (id: string) => {
-    setSelectedStore(stores[storeIdToIndexMap[id]]);
-    setScrolledStoreId(id);
-  };
   return (
     <div
       key={id}
       className="card-content "
       onClick={(event) => {
-        idDetails(id);
+        setSelectedStore(stores[storeIdToIndexMap[id]]);
+        setScrolledStoreId(id);
       }}
     >
       <div className="tile is-ancestor" id={id}>
