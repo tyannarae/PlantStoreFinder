@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useContext } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CityPageContext } from "../context/pages/cityPage";
 import {
@@ -7,7 +7,6 @@ import {
   addDefaultSrc,
 } from "../utils/pagination";
 import "./storeMedia.scss";
-
 export interface StoreMediaProps {
   photos: Array<string>;
   id: string;
@@ -33,7 +32,7 @@ export const StoreMedia: FunctionComponent<StoreMediaProps> = (
 
   return (
     <div className="card-content">
-      <div className="">
+      <div>
         <div onClick={handleImgClick}>
           <LazyLoadImage
             data-testid="lazyLoadImage"

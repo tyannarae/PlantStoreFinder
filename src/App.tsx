@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
-import { Store } from "./database/stores";
 import { MediaModal } from "./components/mediaModal";
 import { CityPageContext } from "./context/pages/cityPage";
 import { StoreMedia } from "./components/storeMedia";
@@ -14,8 +13,27 @@ function App() {
   const { storeIdToIndexMap, stores, seletedCity, city } = useContext(
     CityPageContext
   );
+  const [selectedStore, setSelectedStore] = useState(stores[0]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+  const [scrolledStoreId, setScrolledStoreId] = useState<string>(stores[0].id);
+
+  const parentEl = document.getElementById("storesContainer");
+  parentEl?.addEventListener("scroll", function (event) {
+    // checking whether fully visible
+    for (const [key, value] of Object.entries(storeIdToIndexMap)) {
+      const childEl = document.getElementById(`${key}`) as HTMLElement;
+      let position = childEl.getBoundingClientRect();
+      if (position.top >= 0 && position.bottom <= window.innerHeight) {
+        let val = Number(value);
+        setSelectedStore(stores[val]);
+      }
+    }
+  });
+
+  useEffect(() => {
+    const element = document.getElementById(scrolledStoreId);
+    element?.scrollIntoView({ behavior: "smooth" });
+  }, [scrolledStoreId]);
 
   return (
     <CityPageContext.Provider
@@ -28,6 +46,8 @@ function App() {
         setModalOpen,
         stores,
         storeIdToIndexMap,
+        scrolledStoreId,
+        setScrolledStoreId,
       }}
     >
       <div className="App">
@@ -43,9 +63,9 @@ function App() {
             )}
             style={{ width: "50vw" }}
           >
-            <Map />
+            <Map center={[selectedStore.lat, selectedStore.lng]} />
           </div>
-          <div className="storesContainer">
+          <div className="storesContainer" id="storesContainer">
             {stores.map((store) => (
               <div className="storeContainer">
                 <LazyLoadComponent>
