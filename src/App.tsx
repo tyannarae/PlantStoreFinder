@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { LazyLoadComponent } from "react-lazy-load-image-component";
 import classNames from "classnames";
 import { MediaModal } from "./components/mediaModal";
@@ -50,33 +51,39 @@ function App() {
         setScrolledStoreId,
       }}
     >
-      <div className="App">
-        {isModalOpen ? <MediaModal photos={selectedStore.photos} /> : undefined}
-        <div className="navContainer">
-          <TopNav city={city} />
-        </div>
-        <div className="wrapper">
-          <div
-            className={classNames(
-              "mapOutterContainer",
-              `${isModalOpen ? "modalIsOpen" : ""}`
-            )}
-            style={{ width: "50vw" }}
-          >
-            <Map center={[selectedStore.lat, selectedStore.lng]} />
-          </div>
-          <div className="storesContainer" id="storesContainer">
-            {stores.map((store) => (
-              <div className="storeContainer">
-                <LazyLoadComponent>
-                  <StoreDetails store={store} id={store.id} />
-                  <StoreMedia id={store.id} photos={store.photos} />
-                </LazyLoadComponent>
+      <Router>
+        <Route path="/PlantStoreFinder/">
+          <div className="App">
+            {isModalOpen ? (
+              <MediaModal photos={selectedStore.photos} />
+            ) : undefined}
+            <div className="navContainer">
+              <TopNav city={city} />
+            </div>
+            <div className="wrapper">
+              <div
+                className={classNames(
+                  "mapOutterContainer",
+                  `${isModalOpen ? "modalIsOpen" : ""}`
+                )}
+                style={{ width: "50vw" }}
+              >
+                <Map center={[selectedStore.lat, selectedStore.lng]} />
               </div>
-            ))}
+              <div className="storesContainer" id="storesContainer">
+                {stores.map((store) => (
+                  <div className="storeContainer">
+                    <LazyLoadComponent>
+                      <StoreDetails store={store} id={store.id} />
+                      <StoreMedia id={store.id} photos={store.photos} />
+                    </LazyLoadComponent>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </Route>
+      </Router>
     </CityPageContext.Provider>
   );
 }
