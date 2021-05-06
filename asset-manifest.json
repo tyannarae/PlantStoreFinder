@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/PlantStoreFinder/static/css/main.6911405f.chunk.css",
-    "main.js": "/PlantStoreFinder/static/js/main.2573fd78.chunk.js",
-    "main.js.map": "/PlantStoreFinder/static/js/main.2573fd78.chunk.js.map",
+    "main.js": "/PlantStoreFinder/static/js/main.5efd4026.chunk.js",
+    "main.js.map": "/PlantStoreFinder/static/js/main.5efd4026.chunk.js.map",
     "runtime-main.js": "/PlantStoreFinder/static/js/runtime-main.d1452539.js",
     "runtime-main.js.map": "/PlantStoreFinder/static/js/runtime-main.d1452539.js.map",
-    "static/js/2.0c9d0d76.chunk.js": "/PlantStoreFinder/static/js/2.0c9d0d76.chunk.js",
-    "static/js/2.0c9d0d76.chunk.js.map": "/PlantStoreFinder/static/js/2.0c9d0d76.chunk.js.map",
+    "static/js/2.2bb8e360.chunk.js": "/PlantStoreFinder/static/js/2.2bb8e360.chunk.js",
+    "static/js/2.2bb8e360.chunk.js.map": "/PlantStoreFinder/static/js/2.2bb8e360.chunk.js.map",
     "index.html": "/PlantStoreFinder/index.html",
     "static/css/main.6911405f.chunk.css.map": "/PlantStoreFinder/static/css/main.6911405f.chunk.css.map",
-    "static/js/2.0c9d0d76.chunk.js.LICENSE.txt": "/PlantStoreFinder/static/js/2.0c9d0d76.chunk.js.LICENSE.txt",
+    "static/js/2.2bb8e360.chunk.js.LICENSE.txt": "/PlantStoreFinder/static/js/2.2bb8e360.chunk.js.LICENSE.txt",
     "static/media/fbLogo.5b4225fa.png": "/PlantStoreFinder/static/media/fbLogo.5b4225fa.png",
     "static/media/igLogo.f7b3dff3.png": "/PlantStoreFinder/static/media/igLogo.f7b3dff3.png",
     "static/media/placeholder.718d5978.png": "/PlantStoreFinder/static/media/placeholder.718d5978.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d1452539.js",
-    "static/js/2.0c9d0d76.chunk.js",
+    "static/js/2.2bb8e360.chunk.js",
     "static/css/main.6911405f.chunk.css",
-    "static/js/main.2573fd78.chunk.js"
+    "static/js/main.5efd4026.chunk.js"
   ]
 }
