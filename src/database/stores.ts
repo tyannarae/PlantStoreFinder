@@ -57,7 +57,7 @@ export const Stores: Array<CityDetails> = [
         id: '2',
         city: "Austin",
         state: "Texas",
-        lat: 30.234770,
+        lat: 30.234070,
         lng: -97.757650,
         bussinessName: "The Great Outdoors",
         website: "http://gonursery.com/",

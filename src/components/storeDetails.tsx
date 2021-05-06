@@ -22,23 +22,25 @@ export const StoreDetails: FunctionComponent<StoreDetailsProps> = (
     fbHandle,
     blurb,
   } = StoreDetailsProps.store;
-  const { setSelectedStore, storeIdToIndexMap, stores } = useContext(
-    CityPageContext
-  );
-  //takes the id of the store that was clicked and updates the selectedStore
-  //this will be moved to the Store component once that has been created.
-  const setNewStore = (id: String) => {
-    setSelectedStore(stores[storeIdToIndexMap[`${id}`]]);
-  };
+
+  const {
+    setSelectedStore,
+    storeIdToIndexMap,
+    stores,
+    setScrolledStoreId,
+  } = useContext(CityPageContext);
+
   return (
     <div
+      key={id}
       className="card-content "
       onClick={(event) => {
-        setNewStore(id);
+        setSelectedStore(stores[storeIdToIndexMap[id]]);
+        setScrolledStoreId(id);
       }}
     >
-      <div className="tile is-ancestor">
-        <div className="tile is-vertical ">
+      <div className="tile is-ancestor" id={id}>
+        <div className="tile is-vertical">
           <div className="tile header">
             <div className="businessNameContainer tile is-parent is-vertical is-10">
               <div className="businessName">{bussinessName}</div>

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
-import classNames from "classnames";
 import { getWeather } from "../database/weatherResults";
-import { MapCoordinates, CityDetails } from "../database/stores";
+import { CityDetails } from "../database/stores";
 import "./navbar.scss";
 
 export interface TopNavProps {
@@ -9,7 +8,6 @@ export interface TopNavProps {
 }
 export const TopNav: FunctionComponent<TopNavProps> = (TopNavProps) => {
   const [temp, setTemp] = useState<number>();
-  const [isActive, setActive] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(true);
   const { city } = TopNavProps;
 
